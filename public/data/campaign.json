@@ -1,0 +1,92 @@
+[
+    {
+      "name": "Integrity",
+      "id": "integrity",
+      "host": "Company",
+      "message": "Integrity",
+      "datetime": "2000-01-01 00:00:00",
+      "cover": "integrity.jpg",
+      "status": "Active",
+      "badges": {
+        "id": "badges_000001",
+        "name": "Integrity",
+        "type": "Values",
+        "photo": "integrity_badges.png"
+      }
+    },
+    {
+      "name": "Diversity",
+      "id": "diversity",
+      "host": "Company",
+      "message": "Diversity",
+      "datetime": "2000-01-01 00:00:00",
+      "cover": "diversity.jpg",
+      "status": "Active",
+      "badges": {
+        "id": "badges_000002",
+        "name": "Diversity",
+        "type": "Values",
+        "photo": "diversity_badges.png"
+      }
+    },
+    {
+      "name": "Excellence",
+      "id": "excellence",
+      "host": "Company",
+      "message": "Excellence",
+      "datetime": "2000-01-01 00:00:00",
+      "cover": "excellence.jpg",
+      "status": "Active",
+      "badges": {
+        "id": "badges_000003",
+        "name": "Excellence",
+        "type": "Values",
+        "photo": "excellence_badges.png"
+      }
+    },
+    {
+      "name": "Collaboration",
+      "id": "collaboration",
+      "host": "Company",
+      "message": "Collaboration",
+      "datetime": "2000-01-01 00:00:00",
+      "cover": "collaboration.jpg",
+      "status": "Active",
+      "badges": {
+        "id": "badges_000004",
+        "name": "Collaboration",
+        "type": "Values",
+        "photo": "collaboration_badges.png"
+      }
+    },
+    {
+      "name": "Engagement",
+      "id": "engagement",
+      "host": "Company",
+      "message": "Engagement",
+      "datetime": "2025-10-01 09:00:00",
+      "cover": "engagement.jpg",
+      "status": "Active",
+      "badges": {
+        "id": "badges_000005",
+        "name": "Engagement",
+        "type": "Values",
+        "photo": "engagement_badges.png"
+      }
+    },
+    {
+      "name": "Green Week",
+      "id": "campaign202502",
+      "host": "Department B",
+      "message": "Celebrate sustainability with us during Green Week! This week is all about raising environmental awareness and inspiring eco-friendly habits through interactive workshops, green challenges, and community initiatives. Let’s come together to make a positive impact—one action at a time.",
+      "datetime": "2025-10-06 09:00:00",
+      "cover": "green_week.jpg",
+      "status": "Active",
+      "badges": {
+        "id": "badges_202502",
+        "name": "Green God",
+        "type": "Campaign",
+        "photo": "green_week_badges.png"
+      }
+    }
+  ]

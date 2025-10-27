@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors */
+    --primary-background: #13426b;
+    --primary-foreground: #ffffff;
+    --primary-light: #3c3c3c;
+    --primary-dark: #000000;
+
+    /* Secondary Colors */
+    --secondary-background: #ffffff;
+    --secondary-foreground: #404952;
+    --secondary-light: #f6f5fa;
+    --secondary-dark: #b3b3b3;
+
+    /* Accent Colors */
+    --accent-success: #009066;
+    --accent-success-light: #00b480;
+    --accent-success-lighter: #6bc7b1;
+    --accent-warning: #f0a642;
+    --accent-warning-light: #f3b14c;
+    --accent-warning-lighter: #ffb81c;
+    --accent-error: #f4364c;
+    --accent-error-light: #ff8694;
+
+    /* Background Colors */
+    --bg-main: #f6f5fa;
+    --bg-card: #ffffff;
+    --bg-overlay: #44444466;
+    --bg-accent: #13426b33;
+    --bg-neutral: #f1f1f1;
+    --bg-warm: #f6f2e2;
+    --bg-cream: #ebd0b0;
+    --bg-teal: #73babe;
+    --bg-mint: #97d8c8;
+    --bg-sage: #a7d2cf;
+
+    /* Text Colors */
+    --text-primary: #000000;
+    --text-secondary: #404952;
+    --text-muted: #b3b3b3;
+    --text-accent: #13426b;
+    --text-inverse: #ffffff;
+
+    /* Border Colors */
+    --border-primary: #f1f1f1;
+    --border-secondary: #13426b;
+    --border-dark: #000000;
+
+    /* Component Colors */
+    --button-bg: #13426b;
+    --button-text: #ffffff;
+    --link-bg: #ffffff;
+    --link-border: #13426b;
+    --edittext-bg-primary: #ffffff;
+    --edittext-bg-secondary: #13426b;
+    --edittext-text-primary: #404952;
+    --edittext-text-secondary: #ffffff;
+    --line-bg-primary: #f1f1f1;
+    --line-bg-secondary: #d9d9d9;
+    --line-bg-accent: #13426b33;
+    --line-bg-dark: #000000;
+
+    /* Typography Variables */
+    --font-size-xs: 6px;
+    --font-size-sm: 8px;
+    --font-size-base: 10px;
+    --font-size-md: 12px;
+    --font-size-lg: 13px;
+    --font-size-xl: 14px;
+    --font-size-2xl: 16px;
+    --font-size-3xl: 18px;
+    --font-size-4xl: 22px;
+    --font-size-5xl: 36px;
+
+    /* Font Weight Variables */
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+
+    /* Line Height Variables */
+    --line-height-xs: 8px;
+    --line-height-sm: 9px;
+    --line-height-base: 11px;
+    --line-height-md: 14px;
+    --line-height-lg: 16px;
+    --line-height-xl: 17px;
+    --line-height-2xl: 20px;
+    --line-height-3xl: 22px;
+    --line-height-4xl: 25px;
+    --line-height-5xl: 30px;
+    --line-height-6xl: 50px;
+
+    /* Spacing Variables */
+    --spacing-xs: 2px;
+    --spacing-sm: 4px;
+    --spacing-base: 6px;
+    --spacing-md: 8px;
+    --spacing-lg: 10px;
+    --spacing-xl: 12px;
+    --spacing-2xl: 14px;
+    --spacing-3xl: 16px;
+    --spacing-4xl: 18px;
+    --spacing-5xl: 20px;
+    --spacing-6xl: 22px;
+    --spacing-7xl: 24px;
+    --spacing-8xl: 26px;
+    --spacing-9xl: 30px;
+    --spacing-10xl: 34px;
+    --spacing-11xl: 36px;
+    --spacing-12xl: 38px;
+    --spacing-13xl: 42px;
+    --spacing-14xl: 46px;
+    --spacing-15xl: 48px;
+    --spacing-16xl: 54px;
+    --spacing-17xl: 56px;
+    --spacing-18xl: 66px;
+    --spacing-19xl: 68px;
+    --spacing-20xl: 200px;
+    --spacing-21xl: 202px;
+    --spacing-22xl: 244px;
+
+    /* Border Radius Variables */
+    --radius-xs: 1px;
+    --radius-sm: 2px;
+    --radius-base: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 18px;
+    --radius-2xl: 20px;
+    --radius-3xl: 26px;
+    --radius-4xl: 28px;
+    --radius-5xl: 30px;
+
+    /* Border Width Variables */
+    --border-width-none: 0px;
+    --border-width-thin: 1px;
+  }
+}
