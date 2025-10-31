@@ -8,37 +8,37 @@
         "given_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 2
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 0
             }
@@ -46,37 +46,37 @@
         "received_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 1
             }
@@ -91,37 +91,37 @@
         "given_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 0
             }
@@ -129,37 +129,37 @@
         "received_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 2
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 0
             }
@@ -174,37 +174,37 @@
         "given_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 0
             }
@@ -212,37 +212,37 @@
         "received_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 1
             }
@@ -256,37 +256,37 @@
         "given_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 2
             }
@@ -294,37 +294,37 @@
         "received_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 2
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 0
             }
@@ -338,37 +338,37 @@
         "given_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 1
             }
@@ -376,37 +376,37 @@
         "received_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 2
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 1
             }
@@ -420,37 +420,37 @@
         "given_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 0
             }
@@ -458,37 +458,37 @@
         "received_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 2
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 1
             }
@@ -502,37 +502,37 @@
         "given_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 2
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 0
             }
@@ -540,37 +540,37 @@
         "received_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 2
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 0
             }
@@ -584,37 +584,37 @@
         "given_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 1
             }
@@ -622,37 +622,37 @@
         "received_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 3
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 0
             }
@@ -666,37 +666,37 @@
         "given_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 0
             }
@@ -704,37 +704,37 @@
         "received_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 1
             }
@@ -748,37 +748,37 @@
         "given_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 2
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 1
             }
@@ -786,37 +786,37 @@
         "received_badges": [
             {
                 "id": "badges_000001",
-                "name": "Integrity",
+                "name": "Analytical Thinking",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000002",
-                "name": "Diversity",
+                "name": "Teamwork",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_000003",
-                "name": "Excellence",
+                "name": "Intellectual Curiosity",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000004",
-                "name": "Collaboration",
+                "name": "Effective Communication",
                 "type": "Values",
                 "number": 0
             },
             {
                 "id": "badges_000005",
-                "name": "Engagement",
+                "name": "Resilience",
                 "type": "Values",
                 "number": 1
             },
             {
                 "id": "badges_202502",
-                "name": "Green God",
+                "name": "Risk Awareness",
                 "type": "Campaign",
                 "number": 0
             }

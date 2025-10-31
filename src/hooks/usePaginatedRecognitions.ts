@@ -18,14 +18,18 @@ interface UsePaginatedRecognitionsReturn {
   totalCount: number;
   loading: boolean;
   error: string | null;
-  goToPage: (page: number) => void;
+  // eslint-disable-next-line no-unused-vars
+  goToPage: (pageNumber: number) => void;
   nextPage: () => void;
   previousPage: () => void;
   refreshRecognitions: () => Promise<void>;
   reloadWithFilters: () => Promise<void>;
-  createRecognition: (formData: RecognitionFormData) => Promise<void>;
-  getRecognitionsByTab: (tab: TabType) => Promise<Recognition[]>;
-  filterRecognitionsByDepartment: (department: string) => Promise<Recognition[]>;
+  // eslint-disable-next-line no-unused-vars
+  createRecognition: (data: RecognitionFormData) => Promise<void>;
+  // eslint-disable-next-line no-unused-vars
+  getRecognitionsByTab: (tabType: TabType) => Promise<Recognition[]>;
+  // eslint-disable-next-line no-unused-vars
+  filterRecognitionsByDepartment: (dept: string) => Promise<Recognition[]>;
   getTrendData: () => Promise<{ month: string; received: number; given: number; }[]>;
   getDistributionData: () => Promise<{ name: string; value: number; color: string; }[]>;
   getAvailableBadges: () => Promise<{ id: string; name: string; type: 'Values' | 'Campaign' }[]>;
@@ -35,7 +39,7 @@ export const usePaginatedRecognitions = (
   options: UsePaginatedRecognitionsOptions = {}
 ): UsePaginatedRecognitionsReturn => {
   const { currentUserId, pageSize = 10, autoLoad = true, departmentFilter = 'Everyone', personFilter, activeTab } = options;
-  
+
   const [recognitions, setRecognitions] = useState<Recognition[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
@@ -47,7 +51,7 @@ export const usePaginatedRecognitions = (
   const loadRecognitions = useCallback(async (page: number = 1, tab: TabType = 'feed') => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const result = await recognitionService.getPaginatedRecognitions(
         currentUserId,
@@ -57,7 +61,7 @@ export const usePaginatedRecognitions = (
         departmentFilter,
         personFilter
       );
-      
+
       setRecognitions(result.recognitions);
       setCurrentPage(page);
       setTotalPages(result.totalPages);
@@ -108,7 +112,7 @@ export const usePaginatedRecognitions = (
 
     setLoading(true);
     setError(null);
-    
+
     try {
       await recognitionService.createRecognition(formData, currentUserId);
       // Refresh the recognitions list to include the new recognition
@@ -135,23 +139,23 @@ export const usePaginatedRecognitions = (
     if (department === 'Everyone') {
       return recognitions;
     }
-    
+
     try {
       // Load users to get department information
       const response = await fetch('/data/users.json');
       const users = await response.json();
-      
+
       // Create a map of user ID to department
       const userDepartmentMap = new Map();
-      users.forEach((user: any) => {
+      users.forEach((user: { id: string; department_division: string }) => {
         userDepartmentMap.set(user.id, user.department_division);
       });
-      
+
       // Filter recognitions by department
       return recognitions.filter(recognition => {
         const giverDepartment = userDepartmentMap.get(recognition.giverId);
         const receiverDepartment = userDepartmentMap.get(recognition.receiverId);
-        
+
         // Include recognition if either giver or receiver is in the selected department
         return giverDepartment === department || receiverDepartment === department;
       });
@@ -165,7 +169,7 @@ export const usePaginatedRecognitions = (
     if (!currentUserId) {
       return [];
     }
-    
+
     try {
       return await recognitionService.getRecognitionTrendData(currentUserId);
     } catch (err) {
@@ -190,13 +194,12 @@ export const usePaginatedRecognitions = (
     } catch (err) {
       console.error('Error fetching available badges:', err);
       return [
-        { id: 'badges_000001', name: 'Integrity', type: 'Values' as const },
-        { id: 'badges_000002', name: 'Diversity', type: 'Values' as const },
-        { id: 'badges_000003', name: 'Excellence', type: 'Values' as const },
-        { id: 'badges_000004', name: 'Collaboration', type: 'Values' as const },
-        { id: 'badges_000005', name: 'Engagement', type: 'Values' as const },
-        { id: 'badges_2025001', name: 'Fitness God', type: 'Campaign' as const },
-        { id: 'badges_202502', name: 'Green God', type: 'Campaign' as const }
+        { id: 'badges_000001', name: 'Analytical Thinking', type: 'Values' as const },
+        { id: 'badges_000002', name: 'Teamwork', type: 'Values' as const },
+        { id: 'badges_000003', name: 'Intellectual Curiosity', type: 'Values' as const },
+        { id: 'badges_000004', name: 'Effective Communication', type: 'Values' as const },
+        { id: 'badges_000005', name: 'Resilience', type: 'Values' as const },
+        { id: 'badges_202502', name: 'Risk Awareness', type: 'Campaign' as const }
       ];
     }
   }, []);

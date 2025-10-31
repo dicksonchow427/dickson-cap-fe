@@ -12,7 +12,7 @@ const Header = ({ className }: HeaderProps) => {
       className
     )}>
       <div className="w-full max-w-[1440px] mx-auto px-0">
-        <div className="flex justify-between items-center py-2 sm:py-3 md:py-4 lg:py-5 mt-0 -ml-4 sm:-ml-6 md:-ml-8 lg:-ml-10">
+        <div className="flex justify-between items-center py-2 sm:py-3 md:py-4 lg:py-5">
           {/* Left Section - Logo and Title */}
           <div className="flex items-center gap-[6px] sm:gap-[8px] md:gap-[10px] lg:gap-[12px]">
 

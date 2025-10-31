@@ -10,6 +10,7 @@ interface UseUsersReturn {
   error: string | null;
   // Actions
   refreshUsers: () => Promise<void>;
+  // eslint-disable-next-line no-unused-vars
   incrementBadge: (userId: string, badgeId: string, type: 'given' | 'received') => Promise<boolean>;
 }
 

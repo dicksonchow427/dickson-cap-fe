@@ -3,7 +3,8 @@ import React from 'react';
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
+  // eslint-disable-next-line no-unused-vars
+  onPageChange: (pageNumber: number) => void;
   totalItems: number;
   itemsPerPage: number;
   isLoading?: boolean;
@@ -88,7 +89,7 @@ const Pagination: React.FC<PaginationProps> = ({
                 <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
             </button>
-            
+
             {getVisiblePages().map((page, index) => (
               <React.Fragment key={index}>
                 {page === '...' ? (
@@ -99,18 +100,17 @@ const Pagination: React.FC<PaginationProps> = ({
                   <button
                     onClick={() => onPageChange(page as number)}
                     disabled={isLoading}
-                    className={`relative inline-flex items-center px-4 py-2 border text-base font-medium ${
-                      currentPage === page
+                    className={`relative inline-flex items-center px-4 py-2 border text-base font-medium ${currentPage === page
                         ? 'z-10 bg-[#13426B] border-[#13426B] text-white'
                         : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
-                    } disabled:opacity-50 disabled:cursor-not-allowed`}
+                      } disabled:opacity-50 disabled:cursor-not-allowed`}
                   >
                     {page}
                   </button>
                 )}
               </React.Fragment>
             ))}
-            
+
             <button
               onClick={() => onPageChange(currentPage + 1)}
               disabled={currentPage === totalPages || isLoading}

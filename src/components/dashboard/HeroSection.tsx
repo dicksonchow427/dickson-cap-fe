@@ -23,7 +23,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         <div id="hero-content-container" className="max-w-7xl mx-auto px-4 py-4" data-testid="hero-content-wrapper">
           <div id="hero-content-layout" className="space-y-8" data-testid="hero-layout-container">
             <Header className="" />
-            <div id="hero-title-section" className="ml-4" data-testid="hero-title-wrapper">
+            <div id="hero-title-section" className="" data-testid="hero-title-wrapper">
               <h1 id="hero-main-title" className="text-4xl font-normal text-white" data-testid="hero-welcome-title">
                 {userName ? `Welcome ${userName}` : title}
               </h1>

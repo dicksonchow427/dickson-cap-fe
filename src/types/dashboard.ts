@@ -131,3 +131,16 @@ export interface CampaignFilters {
     end: Date;
   };
 }
+
+// Chart data types
+export interface ChartData {
+  name: string;
+  value: number;
+  color: string;
+}
+
+export interface TrendData {
+  month: string;
+  received: number;
+  given: number;
+}

@@ -14,10 +14,14 @@ interface UseCampaignsReturn {
   activeCampaigns: Campaign[];
   campaignStats: CampaignStats | null;
   refreshCampaigns: () => Promise<void>;
-  getCampaignById: (id: string) => Promise<Campaign | null>;
-  getCampaignsByType: (type: 'Values' | 'Campaign') => Promise<Campaign[]>;
-  getFilteredCampaigns: (filters: CampaignFilters) => Promise<Campaign[]>;
-  getCampaignsForTab: (tab: 'feed' | 'campaign') => Promise<Campaign[]>;
+  // eslint-disable-next-line no-unused-vars
+  getCampaignById: (campaignId: string) => Promise<Campaign | null>;
+  // eslint-disable-next-line no-unused-vars
+  getCampaignsByType: (campaignType: 'Values' | 'Campaign') => Promise<Campaign[]>;
+  // eslint-disable-next-line no-unused-vars
+  getFilteredCampaigns: (campaignFilters: CampaignFilters) => Promise<Campaign[]>;
+  // eslint-disable-next-line no-unused-vars
+  getCampaignsForTab: (tabType: 'feed' | 'campaign') => Promise<Campaign[]>;
   getCampaignDistributionData: () => Promise<{ name: string; value: number; color: string; }[]>;
 }
 
@@ -25,7 +29,7 @@ export const useCampaigns = (
   options: UseCampaignsOptions = {}
 ): UseCampaignsReturn => {
   const { autoLoad = true, initialFilters } = options;
-  
+
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [activeCampaigns, setActiveCampaigns] = useState<Campaign[]>([]);
   const [campaignStats, setCampaignStats] = useState<CampaignStats | null>(null);
@@ -35,14 +39,14 @@ export const useCampaigns = (
   const loadCampaigns = useCallback(async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const [allCampaigns, activeCampaignsList, stats] = await Promise.all([
         campaignService.getAllCampaigns(),
         campaignService.getActiveCampaigns(),
         campaignService.getCampaignStats()
       ]);
-      
+
       setCampaigns(allCampaigns);
       setActiveCampaigns(activeCampaignsList);
       setCampaignStats(stats);

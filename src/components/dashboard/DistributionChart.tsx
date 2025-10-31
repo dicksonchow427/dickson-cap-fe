@@ -4,25 +4,25 @@ import { ChartData } from '../../types/dashboard';
 
 interface DistributionChartProps {
   data: ChartData[];
-  title?: string;
+  title: string;
   badgeText?: string;
 }
 
-const DistributionChart: React.FC<DistributionChartProps> = ({ 
-  data, 
-  title = "Recognition Distribution", 
-  badgeText = "By Category" 
+const DistributionChart: React.FC<DistributionChartProps> = ({
+  data,
+  title,
+  badgeText = "By Category"
 }) => {
   const total = data.reduce((sum, dataItem) => sum + dataItem.value, 0);
 
   return (
     <div id="distribution-chart-card" className="bg-white rounded-lg p-4 shadow-sm" data-testid="distribution-chart-widget">
-      <div id="distribution-chart-header" className="flex justify-between items-center mb-4" data-testid="distribution-chart-header-section">
-        <h4 id="distribution-chart-title" className="text-lg font-semibold text-gray-900" data-testid="distribution-chart-section-title">{title}</h4>
-        <div id="distribution-chart-badge" className="bg-[#13426B] text-white text-base px-2 py-1 rounded-md" data-testid="distribution-chart-category-badge">{badgeText}</div>
+      <div id="distribution-chart-header" className="flex justify-between items-center mb-5" data-testid="distribution-chart-header-section">
+        <h4 id="distribution-chart-title" className="text-base font-semibold text-gray-900" data-testid="distribution-chart-section-title">{title}</h4>
+        <div id="distribution-chart-badge" className="bg-[#13426B] text-white text-sm px-2 py-1 rounded-md" data-testid="distribution-chart-category-badge">{badgeText}</div>
       </div>
 
-      <hr id="distribution-chart-separator" className="border-gray-200 mb-4" data-testid="distribution-chart-header-separator" />
+      <hr id="distribution-chart-separator" className="border-gray-200 mb-5" data-testid="distribution-chart-header-separator" />
 
       <div id="distribution-chart-content" className="flex items-center justify-center" data-testid="distribution-chart-content-wrapper">
         {/* Chart Container */}
@@ -46,10 +46,10 @@ const DistributionChart: React.FC<DistributionChartProps> = ({
                 wrapperStyle={{ outline: 'none' }}
                 content={({ active, payload }) => {
                   if (active && payload && payload.length > 0) {
-                    const item: any = payload[0];
-                    const name = item.name as string;
-                    const value = item.value as number;
-                    const color = (item?.payload?.color as string) || item.color;
+                    const item = payload[0] as { name?: string; value?: number; payload?: { color?: string }; color?: string };
+                    const name = item.name || 'Unknown';
+                    const value = item.value || 0;
+                    const color = (item?.payload?.color as string) || (item.color as string) || '#13426B';
                     const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
                     return (
                       <div

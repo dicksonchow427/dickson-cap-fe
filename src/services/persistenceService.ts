@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-
 class PersistenceService {
   private dataDir: string;
 
@@ -12,40 +9,52 @@ class PersistenceService {
   }
 
   // Simulate writing to JSON file by storing in localStorage
-  async writeToFile(filename: string, data: any): Promise<boolean> {
+  async writeToFile(filename: string, data: unknown): Promise<boolean> {
     try {
+      // Check if localStorage is available (not available in private browsing mode)
+      if (typeof Storage === 'undefined' || !localStorage) {
+        console.warn('localStorage is not available. Data will not be persisted.');
+        return false;
+      }
+
       // In browser environment, store in localStorage with a key
       const storageKey = `persisted_${filename.replace('.json', '')}`;
       localStorage.setItem(storageKey, JSON.stringify(data));
-      
-      
+
       return true;
     } catch (error) {
-      console.error(`❌ Error persisting data to ${filename}:`, error);
+      // Handle QuotaExceededError and other storage errors
+      if (error instanceof DOMException && (error.code === 22 || error.code === 1014 || error.name === 'QuotaExceededError')) {
+        console.error('localStorage quota exceeded. Clearing old data may help.');
+      }
+      console.error(`Error persisting data to ${filename}:`, error);
       return false;
     }
   }
 
   // Simulate reading from JSON file by checking localStorage first, then falling back to fetch
-  async readFromFile(filename: string): Promise<any> {
+  async readFromFile<T = unknown>(filename: string): Promise<T> {
     try {
-      const storageKey = `persisted_${filename.replace('.json', '')}`;
-      const persistedData = localStorage.getItem(storageKey);
-      
-      if (persistedData) {
-        return JSON.parse(persistedData);
+      // Check if localStorage is available
+      if (typeof Storage !== 'undefined' && localStorage) {
+        const storageKey = `persisted_${filename.replace('.json', '')}`;
+        const persistedData = localStorage.getItem(storageKey);
+
+        if (persistedData) {
+          return JSON.parse(persistedData) as T;
+        }
       }
-      
+
       // Fallback to fetching from public directory
       const response = await fetch(`${this.dataDir}/${filename}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${filename}: ${response.status}`);
       }
-      
-      const data = await response.json();
+
+      const data = await response.json() as T;
       return data;
     } catch (error) {
-      console.error(`❌ Error reading data from ${filename}:`, error);
+      console.error(`Error reading data from ${filename}:`, error);
       throw error;
     }
   }

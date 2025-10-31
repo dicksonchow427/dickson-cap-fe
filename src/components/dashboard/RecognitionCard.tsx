@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import { Recognition } from '../../types/dashboard';
-import { getBadgeColorAlphabetical, createGradientFromColor, getShortName } from '../../constants/badgeColors';
+import { getBadgeImage } from '../../utils/badgeImages';
 
 interface RecognitionCardProps {
   recognition: Recognition;
-  onLike: (recognitionId: string) => void;
-  onRecognize?: (userId: string) => void;
-  onFilterByBadge?: (badgeName: string) => void;
+  // eslint-disable-next-line no-unused-vars
+  onLike: (id: string) => void;
+  // eslint-disable-next-line no-unused-vars
+  onRecognize?: (id: string) => void;
+  // eslint-disable-next-line no-unused-vars
+  onFilterByBadge?: (name: string) => void;
   showActions?: boolean;
-  campaignContext?: any;
+  campaignContext?: {
+    name: string;
+    host: string;
+    participantCount?: number;
+  };
 }
 
-const RecognitionCard: React.FC<RecognitionCardProps> = ({ 
-  recognition, 
-  onLike, 
+const RecognitionCard: React.FC<RecognitionCardProps> = ({
+  recognition,
+  onLike,
   onRecognize,
   onFilterByBadge,
   showActions = true,
@@ -23,7 +30,7 @@ const RecognitionCard: React.FC<RecognitionCardProps> = ({
 
   const handleLike = async () => {
     if (isLiking || !onLike) return;
-    
+
     setIsLiking(true);
     try {
       await onLike(recognition.id);
@@ -41,32 +48,32 @@ const RecognitionCard: React.FC<RecognitionCardProps> = ({
   };
 
   // Use real user photos if available, fallback to default
-  const giverPhoto = recognition.giverPhoto 
-    ? `/images/${recognition.giverPhoto}` 
+  const giverPhoto = recognition.giverPhoto
+    ? `/images/${recognition.giverPhoto}`
     : "/images/img_image_8.png";
-  
-  const receiverPhoto = recognition.receiverPhoto 
-    ? `/images/${recognition.receiverPhoto}` 
+
+  const receiverPhoto = recognition.receiverPhoto
+    ? `/images/${recognition.receiverPhoto}`
     : "/images/img_image_7.png";
 
-  const badgeColor = getBadgeColorAlphabetical(recognition.badges?.name || '');
+  const badgeImageInfo = getBadgeImage(recognition.badges?.name || recognition.category);
 
   return (
-    <article id={`recognition-card-${recognition.id}`} className="bg-white rounded-lg shadow-sm p-4" data-testid={`recognition-card-${recognition.id}`}>
+    <article id={`recognition-card-${recognition.id}`} className="bg-white rounded-lg shadow-sm p-6" data-testid={`recognition-card-${recognition.id}`}>
       {/* Recognition Card */}
-      <div id={`recognition-card-content-${recognition.id}`} className="relative bg-white rounded-lg p-4 pt-16" data-testid={`recognition-card-content-${recognition.id}`}>
+      <div id={`recognition-card-content-${recognition.id}`} className="relative bg-white rounded-lg p-6 pt-20" data-testid={`recognition-card-content-${recognition.id}`}>
         {/* User Avatars */}
-        <div id={`recognition-avatars-${recognition.id}`} className="absolute -top-8 left-1/2 transform -translate-x-1/2 flex items-center justify-between w-40" data-testid={`recognition-avatars-section-${recognition.id}`}>
+        <div id={`recognition-avatars-${recognition.id}`} className="absolute -top-12 left-1/2 transform -translate-x-1/2 flex items-center justify-between w-56" data-testid={`recognition-avatars-section-${recognition.id}`}>
           <button
             onClick={() => onFilterByBadge?.(recognition.giver)}
-            className="w-14 h-14 rounded-full object-cover border-4 border-white shadow-lg hover:opacity-80 transition-opacity cursor-pointer"
+            className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-lg hover:opacity-80 transition-opacity cursor-pointer"
             data-testid={`recognition-giver-avatar-button-${recognition.id}`}
           >
             <img
               id={`recognition-giver-avatar-${recognition.id}`}
               src={giverPhoto}
               alt={recognition.giver}
-              className="w-14 h-14 rounded-full object-cover"
+              className="w-20 h-20 rounded-full object-cover"
               data-testid={`recognition-giver-avatar-${recognition.id}`}
             />
           </button>
@@ -79,21 +86,21 @@ const RecognitionCard: React.FC<RecognitionCardProps> = ({
           />
           <button
             onClick={() => onFilterByBadge?.(recognition.receiver)}
-            className="w-14 h-14 rounded-full object-cover border-4 border-white shadow-lg hover:opacity-80 transition-opacity cursor-pointer"
+            className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-lg hover:opacity-80 transition-opacity cursor-pointer"
             data-testid={`recognition-receiver-avatar-button-${recognition.id}`}
           >
             <img
               id={`recognition-receiver-avatar-${recognition.id}`}
               src={receiverPhoto}
               alt={recognition.receiver}
-              className="w-14 h-14 rounded-full object-cover"
+              className="w-20 h-20 rounded-full object-cover"
               data-testid={`recognition-receiver-avatar-${recognition.id}`}
             />
           </button>
         </div>
 
         {/* Recognition Text */}
-        <div id={`recognition-text-section-${recognition.id}`} className="text-center mb-3" data-testid={`recognition-text-wrapper-${recognition.id}`}>
+        <div id={`recognition-text-section-${recognition.id}`} className="text-center mb-5" data-testid={`recognition-text-wrapper-${recognition.id}`}>
           <p id={`recognition-description-${recognition.id}`} className="text-base text-gray-700" data-testid={`recognition-description-text-${recognition.id}`}>
             <button
               onClick={() => onFilterByBadge?.(recognition.giver)}
@@ -115,36 +122,40 @@ const RecognitionCard: React.FC<RecognitionCardProps> = ({
           </p>
         </div>
 
-        {/* Recognition Badge - Updated to match RecognitionModal design */}
-        <div id={`recognition-badge-section-${recognition.id}`} className="flex justify-center mb-3" data-testid={`recognition-badge-wrapper-${recognition.id}`}>
-          <div 
+        {/* Recognition Badge - Updated to use images */}
+        <div id={`recognition-badge-section-${recognition.id}`} className="flex justify-center mb-5" data-testid={`recognition-badge-wrapper-${recognition.id}`}>
+          <div
             id={`recognition-badge-${recognition.id}`}
-            className="w-20 h-20 rounded-full flex items-center justify-center shadow-md"
-            style={{ 
-              backgroundColor: badgeColor,
-              '--badge-color': badgeColor
-            } as React.CSSProperties}
+            className="w-24 h-24 rounded-full flex items-center justify-center shadow-md bg-white border-2 border-gray-200"
             data-testid={`recognition-badge-circle-${recognition.id}`}
           >
-            <div className="text-base font-bold text-white">{getShortName(recognition.badges?.name || 'Unknown')}</div>
+            <img
+              src={badgeImageInfo.imagePath}
+              alt={badgeImageInfo.altText}
+              className="w-20 h-20 object-contain"
+              onError={(e) => {
+                // Fallback to a default image if the badge image fails to load
+                e.currentTarget.src = '/images/badges/Teamwork.png';
+              }}
+            />
           </div>
         </div>
 
         {/* Time */}
-        <div id={`recognition-time-section-${recognition.id}`} className="text-center mb-3" data-testid={`recognition-time-wrapper-${recognition.id}`}>
+        <div id={`recognition-time-section-${recognition.id}`} className="text-center mb-5" data-testid={`recognition-time-wrapper-${recognition.id}`}>
           <span id={`recognition-time-text-${recognition.id}`} className="text-base text-gray-500" data-testid={`recognition-time-ago-${recognition.id}`}>{recognition.timeAgo}</span>
         </div>
 
         {/* Message */}
-        <div id={`recognition-message-section-${recognition.id}`} className="mb-3" data-testid={`recognition-message-wrapper-${recognition.id}`}>
+        <div id={`recognition-message-section-${recognition.id}`} className="mb-5" data-testid={`recognition-message-wrapper-${recognition.id}`}>
           <p id={`recognition-message-text-${recognition.id}`} className="text-base text-gray-700 leading-relaxed" data-testid={`recognition-message-content-${recognition.id}`}>{recognition.message}</p>
         </div>
 
         {/* Likes */}
-        <div id={`recognition-likes-section-${recognition.id}`} className="flex items-center space-x-2 mb-3" data-testid={`recognition-likes-wrapper-${recognition.id}`}>
-          <img 
+        <div id={`recognition-likes-section-${recognition.id}`} className="flex items-center space-x-2 mb-5" data-testid={`recognition-likes-wrapper-${recognition.id}`}>
+          <img
             id={`recognition-likes-icon-${recognition.id}`}
-            src="/images/img_facebook_like.png" 
+            src="/images/img_facebook_like.png"
             alt="Like"
             className="w-4 h-4"
             data-testid={`recognition-likes-icon-image-${recognition.id}`}
@@ -178,37 +189,38 @@ const RecognitionCard: React.FC<RecognitionCardProps> = ({
           <div id={`recognition-actions-section-${recognition.id}`} className="flex justify-between items-center mt-3" data-testid={`recognition-actions-wrapper-${recognition.id}`}>
             <button
               id={`recognition-like-button-${recognition.id}`}
+              type="button"
               onClick={handleLike}
-              className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors ${
-                recognition.isLiked 
-                  ? 'text-[#13426B] hover:bg-[#13426B]/10' :'text-gray-600 hover:bg-gray-50'
-              } ${isLiking ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`flex items-center space-x-2 py-2 rounded-md transition-colors ${recognition.isLiked
+                ? 'text-[#13426B] hover:bg-[#13426B]/10' : 'text-gray-600 hover:bg-gray-50'
+                } ${isLiking ? 'opacity-50 cursor-not-allowed' : ''}`}
               data-testid={`recognition-like-action-button-${recognition.id}`}
             >
-              <img 
+              <img
                 id={`recognition-like-icon-${recognition.id}`}
-                src={recognition.isLiked ? "/images/img_mask_group.png" : "/images/img_vector_black_900.svg"} 
+                src={recognition.isLiked ? "/images/img_mask_group.png" : "/images/img_vector_black_900.svg"}
                 alt="Like"
                 className="w-4 h-4"
                 data-testid={`recognition-like-button-icon-${recognition.id}`}
               />
               <span id={`recognition-like-text-${recognition.id}`} className="text-base" data-testid={`recognition-like-button-text-${recognition.id}`}>{recognition.isLiked ? 'Liked' : 'Like'}</span>
             </button>
-            
-            <button 
-              id={`recognition-recognize-too-button-${recognition.id}`} 
-              className="flex items-center space-x-2 px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 transition-colors" 
+
+            <button
+              id={`recognition-recognize-too-button-${recognition.id}`}
+              type="button"
+              className="flex items-center space-x-2 px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 transition-colors"
               data-testid={`recognition-recognize-too-button-${recognition.id}`}
               onClick={handleRecognize}
             >
-              <img 
+              <img
                 id={`recognition-recognize-too-icon-${recognition.id}`}
-                src="/images/img_group_blue_gray_600.svg" 
+                src="/images/img_group_blue_gray_600.svg"
                 alt="Recognize"
                 className="w-4 h-4"
                 data-testid={`recognition-recognize-too-icon-image-${recognition.id}`}
               />
-              <span id={`recognition-recognize-too-text-${recognition.id}`} className="text-base" data-testid={`recognition-recognize-too-text-label-${recognition.id}`}>Recognise {recognition.receiver.split(' ')[0]} too</span>
+              <span id={`recognition-recognize-too-text-${recognition.id}`} className="text-base" data-testid={`recognition-recognize-too-text-label-${recognition.id}`}>Recognise {recognition.receiver?.split(' ')[0] || recognition.receiver} too</span>
             </button>
           </div>
         )}

@@ -35,7 +35,7 @@ class RecognitionService {
     const now = new Date();
     const past = new Date(datetime);
     const diffInHours = Math.floor((now.getTime() - past.getTime()) / (1000 * 60 * 60));
-    
+
     if (diffInHours < 1) {
       const diffInMinutes = Math.floor((now.getTime() - past.getTime()) / (1000 * 60));
       return `${diffInMinutes} minutes ago`;
@@ -74,11 +74,11 @@ class RecognitionService {
   async getTransformedRecognitions(currentUserId?: string): Promise<Recognition[]> {
     const recognitions = await this.getAllRecognitions();
     // Sort by datetime, most recent first
-    const sortedRecognitions = recognitions.sort((a, b) => 
+    const sortedRecognitions = recognitions.sort((a, b) =>
       new Date(b.datetime).getTime() - new Date(a.datetime).getTime()
     );
-    
-    return sortedRecognitions.map((rec, index) => 
+
+    return sortedRecognitions.map((rec, index) =>
       this.transformToRecognition(rec, index, currentUserId)
     );
   }
@@ -86,7 +86,7 @@ class RecognitionService {
   // Filter recognitions by tab type
   async getRecognitionsByTab(tab: 'feed' | 'campaign', currentUserId?: string): Promise<Recognition[]> {
     const allRecognitions = await this.getTransformedRecognitions(currentUserId);
-    
+
     if (tab === 'feed') {
       return allRecognitions; // Return all for feed
     } else {
@@ -110,12 +110,12 @@ class RecognitionService {
     personFilter?: string
   ): Promise<{ recognitions: Recognition[]; totalCount: number; totalPages: number }> {
     let allRecognitions = await this.getRecognitionsByTab(tab, currentUserId);
-    
+
     // Apply department filtering
     if (departmentFilter !== 'Everyone') {
       if (departmentFilter === 'Your Own') {
         // Filter to show only recognitions where current user is giver or receiver
-        allRecognitions = allRecognitions.filter(recognition => 
+        allRecognitions = allRecognitions.filter(recognition =>
           recognition.giverId === currentUserId || recognition.receiverId === currentUserId
         );
       } else {
@@ -123,18 +123,18 @@ class RecognitionService {
           // Load users to get department information
           const response = await fetch('/data/users.json');
           const users = await response.json();
-          
+
           // Create a map of user ID to department
           const userDepartmentMap = new Map();
-          users.forEach((user: any) => {
+          users.forEach((user: { id: string; department_division: string }) => {
             userDepartmentMap.set(user.id, user.department_division);
           });
-          
+
           // Filter recognitions by department
           allRecognitions = allRecognitions.filter(recognition => {
             const giverDepartment = userDepartmentMap.get(recognition.giverId);
             const receiverDepartment = userDepartmentMap.get(recognition.receiverId);
-            
+
             // Include recognition if either giver or receiver is in the selected department
             return giverDepartment === departmentFilter || receiverDepartment === departmentFilter;
           });
@@ -144,21 +144,21 @@ class RecognitionService {
         }
       }
     }
-    
+
     // Apply person filtering
     if (personFilter) {
-      allRecognitions = allRecognitions.filter(recognition => 
+      allRecognitions = allRecognitions.filter(recognition =>
         recognition.giver === personFilter || recognition.receiver === personFilter
       );
     }
-    
+
     const totalCount = allRecognitions.length;
     const totalPages = Math.ceil(totalCount / pageSize);
-    
+
     const startIndex = (page - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     const paginatedRecognitions = allRecognitions.slice(startIndex, endIndex);
-    
+
     return {
       recognitions: paginatedRecognitions,
       totalCount,
@@ -170,16 +170,23 @@ class RecognitionService {
   async toggleLike(recognitionId: string, userId: string): Promise<boolean> {
     try {
       const recognitions = await this.getAllRecognitions();
-      const index = parseInt(recognitionId) - 1;
+      const index = parseInt(recognitionId, 10) - 1;
+
+      // Validate index is within bounds
+      if (isNaN(index) || index < 0 || index >= recognitions.length) {
+        console.error('Invalid recognition ID:', recognitionId);
+        return false;
+      }
+
       const recognition = recognitions[index];
-      
+
       if (!recognition) {
         console.error('Recognition not found:', recognitionId);
         return false;
       }
 
       const likeIndex = recognition.likes.findIndex(like => like.id === userId);
-      
+
       if (likeIndex > -1) {
         // Remove like
         recognition.likes.splice(likeIndex, 1);
@@ -187,10 +194,10 @@ class RecognitionService {
         // Add like
         recognition.likes.push({ id: userId });
       }
-      
+
       // Persist the updated data
       await persistenceService.writeToFile('recognition.json', recognitions);
-      
+
       return true;
     } catch (error) {
       console.error('Error toggling like:', error);
@@ -222,9 +229,6 @@ class RecognitionService {
         throw new Error('Badge not found');
       }
 
-      // Generate unique ID based on current timestamp
-      const newId = `recognition_${Date.now()}`;
-      
       // Create recognition data object
       const newRecognition: RecognitionData = {
         giver: giver.name,
@@ -278,16 +282,15 @@ class RecognitionService {
   // Generate trend data from recognitions
   async getRecognitionTrendData(userId: string): Promise<{ month: string; received: number; given: number; }[]> {
     const recognitions = await this.getAllRecognitions();
-    
+
     // Generate data for last 8 months
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
-    const currentMonth = new Date().getMonth();
-    
-    return months.map((month, index) => {
+
+    return months.map((month) => {
       // Mock data based on actual recognitions
       const baseReceived = recognitions.filter(r => r.receiverId === userId).length * 2;
       const baseGiven = recognitions.filter(r => r.giverId === userId).length * 3;
-      
+
       return {
         month,
         received: baseReceived + Math.floor(Math.random() * 10),
@@ -299,7 +302,7 @@ class RecognitionService {
   // Generate distribution data from badges
   async getBadgeDistributionData(): Promise<{ name: string; value: number; color: string; }[]> {
     const recognitions = await this.getAllRecognitions();
-    
+
     // Count badge types
     const badgeCount: { [key: string]: number } = {};
     recognitions.forEach(rec => {
@@ -330,26 +333,20 @@ class RecognitionService {
     } catch (error) {
       console.error('Error getting available badges:', error);
       return [
-        { id: 'badges_000001', name: 'Integrity', type: 'Values' },
-        { id: 'badges_000002', name: 'Diversity', type: 'Values' },
-        { id: 'badges_000003', name: 'Excellence', type: 'Values' },
-        { id: 'badges_000004', name: 'Collaboration', type: 'Values' },
-        { id: 'badges_000005', name: 'Engagement', type: 'Values' },
-        { id: 'badges_2025001', name: 'Fitness God', type: 'Campaign' },
-        { id: 'badges_202502', name: 'Green God', type: 'Campaign' }
+        { id: 'badges_000001', name: 'Analytical Thinking', type: 'Values' },
+        { id: 'badges_000002', name: 'Teamwork', type: 'Values' },
+        { id: 'badges_000003', name: 'Intellectual Curiosity', type: 'Values' },
+        { id: 'badges_000004', name: 'Effective Communication', type: 'Values' },
+        { id: 'badges_000005', name: 'Resilience', type: 'Values' },
+        { id: 'badges_202502', name: 'Risk Awareness', type: 'Campaign' }
       ];
     }
   }
 
   // Save recognitions (mock - in real app would be API call)
   async saveRecognitions(): Promise<boolean> {
-    try {
-      // In a real application, this would make an API call to save data
-      return true;
-    } catch (error) {
-      console.error('Error saving recognitions:', error);
-      return false;
-    }
+    // In a real application, this would make an API call to save data
+    return true;
   }
 }
 

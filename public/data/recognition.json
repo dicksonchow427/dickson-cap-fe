@@ -21,11 +21,11 @@
         ],
         "badges": {
             "id": "badges_000002",
-            "name": "Diversity",
+            "name": "Teamwork",
             "type": "Values",
             "photo": ""
         },
-        "message": "You are doing a great job in Diversity!",
+        "message": "You are doing a great job in Teamwork!",
         "datetime": "2025-09-02 10:09:42"
     },
     {
@@ -47,7 +47,7 @@
         ],
         "badges": {
             "id": "badges_202502",
-            "name": "Green God",
+            "name": "Risk Awareness",
             "type": "Campaign",
             "photo": "green_week_badges.png"
         },
@@ -79,7 +79,7 @@
         ],
         "badges": {
             "id": "badges_000005",
-            "name": "Engagement",
+            "name": "Resilience",
             "type": "Values",
             "photo": "engagement_badges.png"
         },
@@ -105,7 +105,7 @@
         ],
         "badges": {
             "id": "badges_000003",
-            "name": "Excellence",
+            "name": "Intellectual Curiosity",
             "type": "Values",
             "photo": "excellence_badges.png"
         },
@@ -134,7 +134,7 @@
         ],
         "badges": {
             "id": "badges_000001",
-            "name": "Integrity",
+            "name": "Analytical Thinking",
             "type": "Values",
             "photo": "integrity_badges.png"
         },
@@ -163,7 +163,7 @@
         ],
         "badges": {
             "id": "badges_000002",
-            "name": "Diversity",
+            "name": "Teamwork",
             "type": "Values",
             "photo": "diversity_badges.png"
         },
@@ -189,7 +189,7 @@
         ],
         "badges": {
             "id": "badges_000004",
-            "name": "Collaboration",
+            "name": "Effective Communication",
             "type": "Values",
             "photo": "collaboration_badges.png"
         },
@@ -221,7 +221,7 @@
         ],
         "badges": {
             "id": "badges_000003",
-            "name": "Excellence",
+            "name": "Intellectual Curiosity",
             "type": "Values",
             "photo": "excellence_badges.png"
         },
@@ -250,7 +250,7 @@
         ],
         "badges": {
             "id": "badges_000004",
-            "name": "Collaboration",
+            "name": "Effective Communication",
             "type": "Values",
             "photo": "collaboration_badges.png"
         },
@@ -279,7 +279,7 @@
         ],
         "badges": {
             "id": "badges_000003",
-            "name": "Excellence",
+            "name": "Intellectual Curiosity",
             "type": "Values",
             "photo": "excellence_badges.png"
         },
@@ -308,7 +308,7 @@
         ],
         "badges": {
             "id": "badges_000005",
-            "name": "Engagement",
+            "name": "Resilience",
             "type": "Values",
             "photo": "engagement_badges.png"
         },
@@ -334,7 +334,7 @@
         ],
         "badges": {
             "id": "badges_202502",
-            "name": "Green God",
+            "name": "Risk Awareness",
             "type": "Campaign",
             "photo": "green_badges.png"
         },
@@ -363,7 +363,7 @@
         ],
         "badges": {
             "id": "badges_000001",
-            "name": "Integrity",
+            "name": "Analytical Thinking",
             "type": "Values",
             "photo": "integrity_badges.png"
         },
@@ -392,7 +392,7 @@
         ],
         "badges": {
             "id": "badges_000004",
-            "name": "Collaboration",
+            "name": "Effective Communication",
             "type": "Values",
             "photo": "collaboration_badges.png"
         },
@@ -424,7 +424,7 @@
         ],
         "badges": {
             "id": "badges_000002",
-            "name": "Diversity",
+            "name": "Teamwork",
             "type": "Values",
             "photo": "diversity_badges.png"
         },
@@ -453,7 +453,7 @@
         ],
         "badges": {
             "id": "badges_000005",
-            "name": "Engagement",
+            "name": "Resilience",
             "type": "Values",
             "photo": "engagement_badges.png"
         },
@@ -482,7 +482,7 @@
         ],
         "badges": {
             "id": "badges_202502",
-            "name": "Green God",
+            "name": "Risk Awareness",
             "type": "Campaign",
             "photo": "green_badges.png"
         },
@@ -511,7 +511,7 @@
         ],
         "badges": {
             "id": "badges_000001",
-            "name": "Integrity",
+            "name": "Analytical Thinking",
             "type": "Values",
             "photo": "integrity_badges.png"
         },
@@ -537,7 +537,7 @@
         ],
         "badges": {
             "id": "badges_000003",
-            "name": "Excellence",
+            "name": "Intellectual Curiosity",
             "type": "Values",
             "photo": "excellence_badges.png"
         },
@@ -566,7 +566,7 @@
         ],
         "badges": {
             "id": "badges_000004",
-            "name": "Collaboration",
+            "name": "Effective Communication",
             "type": "Values",
             "photo": "collaboration_badges.png"
         },
@@ -595,7 +595,7 @@
         ],
         "badges": {
             "id": "badges_000002",
-            "name": "Diversity",
+            "name": "Teamwork",
             "type": "Values",
             "photo": "diversity_badges.png"
         },
@@ -624,7 +624,7 @@
         ],
         "badges": {
             "id": "badges_000005",
-            "name": "Engagement",
+            "name": "Resilience",
             "type": "Values",
             "photo": "engagement_badges.png"
         },
@@ -653,7 +653,7 @@
         ],
         "badges": {
             "id": "badges_000003",
-            "name": "Excellence",
+            "name": "Intellectual Curiosity",
             "type": "Values",
             "photo": "excellence_badges.png"
         },
@@ -682,7 +682,7 @@
         ],
         "badges": {
             "id": "badges_202502",
-            "name": "Green God",
+            "name": "Risk Awareness",
             "type": "Campaign",
             "photo": "green_badges.png"
         },
@@ -708,7 +708,7 @@
         ],
         "badges": {
             "id": "badges_000001",
-            "name": "Integrity",
+            "name": "Analytical Thinking",
             "type": "Values",
             "photo": "integrity_badges.png"
         },
@@ -740,7 +740,7 @@
         ],
         "badges": {
             "id": "badges_000004",
-            "name": "Collaboration",
+            "name": "Effective Communication",
             "type": "Values",
             "photo": "collaboration_badges.png"
         },
@@ -769,7 +769,7 @@
         ],
         "badges": {
             "id": "badges_000002",
-            "name": "Diversity",
+            "name": "Teamwork",
             "type": "Values",
             "photo": "diversity_badges.png"
         },
@@ -798,7 +798,7 @@
         ],
         "badges": {
             "id": "badges_000005",
-            "name": "Engagement",
+            "name": "Resilience",
             "type": "Values",
             "photo": "engagement_badges.png"
         },
@@ -827,7 +827,7 @@
         ],
         "badges": {
             "id": "badges_202502",
-            "name": "Green God",
+            "name": "Risk Awareness",
             "type": "Campaign",
             "photo": "green_badges.png"
         },
@@ -856,7 +856,7 @@
         ],
         "badges": {
             "id": "badges_000003",
-            "name": "Excellence",
+            "name": "Intellectual Curiosity",
             "type": "Values",
             "photo": "excellence_badges.png"
         },

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { User, Badge } from '../../types/dashboard';
 import { RecognitionModalState } from '../../types/dashboard';
-import { getBadgeColorAlphabetical, createGradientFromColor, getShortName } from '../../constants/badgeColors';
+import { getBadgeImage } from '../../utils/badgeImages';
 
 
 export interface RecognitionFormData {
@@ -16,7 +16,8 @@ export interface RecognitionFormData {
 interface RecognitionModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (formData: RecognitionFormData) => Promise<void>;
+  // eslint-disable-next-line no-unused-vars
+  onSubmit: (data: RecognitionFormData) => Promise<void>;
   currentUserId: string;
   users: User[];
   availableBadges: Badge[];
@@ -68,7 +69,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
   useEffect(() => {
     if (!isOpen) {
       setState({
-        ...state,
+        isOpen: true,
         selectedUser: null,
         selectedBadge: null,
         message: '',
@@ -79,10 +80,13 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
       setShowDropdown(false);
     } else {
       // Auto-select first badge if available
-      if (availableBadges.length > 0 && !state.selectedBadge) {
-        setState(prev => ({ ...prev, selectedBadge: availableBadges[0] }));
-      }
-      
+      setState(prev => {
+        if (availableBadges.length > 0 && !prev.selectedBadge) {
+          return { ...prev, selectedBadge: availableBadges[0] };
+        }
+        return prev;
+      });
+
       // Pre-select user if preselectedUserId is provided
       if (preselectedUserId) {
         const preselectedUser = availableUsers.find(user => user.id === preselectedUserId);
@@ -96,7 +100,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
         setShowDropdown(true);
       }
     }
-  }, [isOpen, availableBadges, state.selectedBadge, preselectedUserId, availableUsers]);
+  }, [isOpen, availableBadges, preselectedUserId, availableUsers]);
 
   // Form validation
   const validateForm = (): string[] => {
@@ -165,7 +169,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
 
       await onSubmit(formData);
       onClose();
-    } catch (error) {
+    } catch {
       setState(prev => ({
         ...prev,
         errors: ['Failed to send recognition. Please try again.']
@@ -205,11 +209,11 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
       aria-labelledby="recognition-modal-title"
     >
       <div
-        className="bg-white rounded-2xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-2xl shadow-xl max-w-md w-full h-[90vh] flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-6 border-b border-gray-100">
+        <div className="p-6 border-b border-gray-100 flex-shrink-0">
           <div className="flex items-center justify-between">
             <h2
               id="recognition-modal-title"
@@ -229,38 +233,13 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          {/* Error Messages */}
-          {state.errors.length > 0 && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-base font-medium text-red-800">
-                    Please fix the following errors:
-                  </h3>
-                  <div className="mt-2 text-base text-red-700">
-                    <ul className="list-disc list-inside space-y-1">
-                      {state.errors.map((error, index) => (
-                        <li key={index}>{error}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
+        <form onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto flex-1">
           {/* Recipient Selection */}
           <div className="space-y-2">
             <label className="block text-base font-medium text-gray-700">
               Select Recipient
             </label>
-            <div className="relative">
+            <div className="relative z-0">
               <div className="flex items-center">
                 <div className="flex-shrink-0 mr-3">
                   <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -274,13 +253,13 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
                   onFocus={handleInputFocus}
                   onBlur={handleInputBlur}
                   placeholder="Search for a colleague..."
-                className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-base focus:ring-2 focus:ring-[#13426B] focus:border-transparent"
+                  className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-base focus:ring-2 focus:ring-[#13426B] focus:border-transparent"
                 />
               </div>
 
               {/* Dropdown */}
               {showDropdown && filteredUsers.length > 0 && (
-                <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-48 overflow-y-auto">
+                <div className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-48 overflow-y-auto">
                   {filteredUsers.map((user) => (
                     <button
                       key={user.id}
@@ -301,26 +280,26 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
                       </div>
                     </button>
                   ))}
-                  
+
                   {/* Show indicator if there are more users available */}
                   {(!searchTerm && availableUsers.length > 10) && (
                     <div className="px-4 py-2 text-base text-gray-500 bg-gray-50 border-t border-gray-100">
                       Showing 10 of {availableUsers.length} colleagues. Type to search for specific colleagues.
                     </div>
                   )}
-                  
+
                   {/* Show indicator if search results are limited */}
                   {searchTerm && availableUsers.filter(user =>
                     user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                     user.department_division.toLowerCase().includes(searchTerm.toLowerCase())
                   ).length > 10 && (
-                    <div className="px-4 py-2 text-base text-gray-500 bg-gray-50 border-t border-gray-100">
-                      Showing 10 of {availableUsers.filter(user =>
-                        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        user.department_division.toLowerCase().includes(searchTerm.toLowerCase())
-                      ).length} results. Refine your search for more specific results.
-                    </div>
-                  )}
+                      <div className="px-4 py-2 text-base text-gray-500 bg-gray-50 border-t border-gray-100">
+                        Showing 10 of {availableUsers.filter(user =>
+                          user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          user.department_division.toLowerCase().includes(searchTerm.toLowerCase())
+                        ).length} results. Refine your search for more specific results.
+                      </div>
+                    )}
                 </div>
               )}
 
@@ -346,47 +325,51 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
             <label className="block text-base font-medium text-gray-700">
               Select Recognition Badge
             </label>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-1">
               {availableBadges
                 .sort((a, b) => a.name.localeCompare(b.name))
                 .map((badge) => {
-                const isSelected = state.selectedBadge?.id === badge.id;
-                const badgeColor = getBadgeColorAlphabetical(badge.name);
-                const badgeGradient = createGradientFromColor(badgeColor);
+                  const isSelected = state.selectedBadge?.id === badge.id;
+                  const badgeImageInfo = getBadgeImage(badge.name);
 
-                return (
-                  <button
-                    key={badge.id}
-                    type="button"
-                    onClick={() => handleBadgeSelect(badge)}
-                    className={`
-                      p-3 rounded-xl border-2 transition-all duration-200 text-center
+                  return (
+                    <button
+                      key={badge.id}
+                      type="button"
+                      onClick={() => handleBadgeSelect(badge)}
+                      className={`
+                      p-1 rounded-lg border-2 transition-all duration-200 text-center
                       ${isSelected
-                        ? 'border-[#13426B] bg-[#13426B]/10 ring-2 ring-[#13426B] ring-opacity-20' : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
-                      }
+                          ? 'border-[#13426B] bg-[#13426B]/10 ring-2 ring-[#13426B] ring-opacity-20' : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                        }
                     `}
-                  >
-                    <div className="flex flex-col items-center space-y-2">
-                      <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center text-white"
-                        style={{ background: badgeGradient }}
-                      >
-                        <div className="text-base font-bold">{getShortName(badge.name)}</div>
+                    >
+                      <div className="flex flex-col items-center space-y-0.5">
+                        <div className="w-10 h-10 rounded-full flex items-center justify-center bg-white border-2 border-gray-200">
+                          <img
+                            src={badgeImageInfo.imagePath}
+                            alt={badgeImageInfo.altText}
+                            className="w-8 h-8 object-contain"
+                            onError={(e) => {
+                              // Fallback to a default image if the badge image fails to load
+                              e.currentTarget.src = '/images/badges/Teamwork.png';
+                            }}
+                          />
+                        </div>
+                        <div className="flex items-center justify-center">
+                          <img
+                            src="/images/img_mask_group.png"
+                            alt="Trophy"
+                            className="w-3 h-3"
+                          />
+                        </div>
+                        <div className="text-sm font-medium text-gray-700 leading-tight">
+                          {badge.name}
+                        </div>
                       </div>
-                      <div className="flex items-center justify-center">
-                        <img
-                          src="/images/img_mask_group.png"
-                          alt="Trophy"
-                          className="w-4 h-4"
-                        />
-                      </div>
-                      <div className="text-base font-medium text-gray-700 leading-tight">
-                        {badge.name}
-                      </div>
-                    </div>
-                  </button>
-                );
-              })}
+                    </button>
+                  );
+                })}
             </div>
           </div>
 
@@ -409,6 +392,31 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
             </div>
           </div>
 
+          {/* Error Messages */}
+          {state.errors.length > 0 && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="ml-3">
+                  <h3 className="text-base font-medium text-red-800">
+                    Please fix the following errors:
+                  </h3>
+                  <div className="mt-2 text-base text-red-700">
+                    <ul className="list-disc list-inside space-y-1">
+                      {state.errors.map((error, index) => (
+                        <li key={index}>{error}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Action Buttons */}
           <div className="flex space-x-3 pt-4">
             <button
@@ -422,7 +430,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
             <button
               type="submit"
               disabled={isSubmitDisabled}
-                  className={`
+              className={`
                 flex-1 px-4 py-2 rounded-lg font-medium text-white transition-all duration-200
                 ${isSubmitDisabled
                   ? 'bg-gray-300 cursor-not-allowed' : 'bg-[#13426B] hover:bg-[#13426B] focus:ring-2 focus:ring-[#13426B] focus:ring-opacity-20'

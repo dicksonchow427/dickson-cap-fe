@@ -62,7 +62,7 @@ class CampaignService {
 
     // Apply host filter
     if (filters.host) {
-      campaigns = campaigns.filter(campaign => 
+      campaigns = campaigns.filter(campaign =>
         campaign.host.toLowerCase().includes(filters.host!.toLowerCase())
       );
     }
@@ -71,8 +71,8 @@ class CampaignService {
     if (filters.dateRange) {
       campaigns = campaigns.filter(campaign => {
         const campaignDate = new Date(campaign.datetime);
-        return campaignDate >= filters.dateRange!.start && 
-               campaignDate <= filters.dateRange!.end;
+        return campaignDate >= filters.dateRange!.start &&
+          campaignDate <= filters.dateRange!.end;
       });
     }
 
@@ -82,10 +82,10 @@ class CampaignService {
   // Get campaigns for specific tab
   async getCampaignsForTab(tab: 'feed' | 'campaign'): Promise<Campaign[]> {
     let campaigns = await this.loadCampaigns();
-    
+
     if (tab === 'campaign') {
       // For campaign tab, return all campaigns sorted by datetime (most recent first)
-      return campaigns.sort((a, b) => 
+      return campaigns.sort((a, b) =>
         new Date(b.datetime).getTime() - new Date(a.datetime).getTime()
       );
     } else {
@@ -113,7 +113,7 @@ class CampaignService {
     const now = new Date();
     const past = new Date(datetime);
     const diffInHours = Math.floor((now.getTime() - past.getTime()) / (1000 * 60 * 60));
-    
+
     if (diffInHours < 1) {
       return 'Less than an hour ago';
     } else if (diffInHours < 24) {
@@ -145,7 +145,7 @@ class CampaignService {
   // Generate distribution data for campaigns
   async getCampaignDistributionData(): Promise<{ name: string; value: number; color: string; }[]> {
     let campaigns = await this.loadCampaigns();
-    
+
     // Count campaigns by badge type
     const typeCount: { [key: string]: number } = {};
     campaigns.forEach(campaign => {
@@ -156,7 +156,7 @@ class CampaignService {
     // Sort by name (alphabetical) and assign gradient colors in light-to-dark order
     const sortedTypes = Object.entries(typeCount)
       .sort(([a], [b]) => a.localeCompare(b)); // Sort by name alphabetically
-    
+
     return sortedTypes.map(([name, value]) => ({
       name: name === 'Values' ? 'Values Campaigns' : 'Special Campaigns',
       value,
@@ -172,50 +172,33 @@ class CampaignService {
   }
 
   // Join a campaign
-  async joinCampaign(campaignId: string, userId: string): Promise<boolean> {
-    try {
-      // In a real app, this would update the user's campaign participation in the database
-      // For now, we'll just return true to simulate success
-      return true;
-    } catch (error) {
-      console.error('Error joining campaign:', error);
-      return false;
-    }
+  // eslint-disable-next-line no-unused-vars
+  async joinCampaign(_campaignId?: string, _userId?: string): Promise<boolean> {
+    // In a real app, this would update the user's campaign participation in the database
+    // For now, we'll just return true to simulate success
+    return true;
   }
 
   // Leave a campaign
-  async leaveCampaign(campaignId: string, userId: string): Promise<boolean> {
-    try {
-      // In a real app, this would update the user's campaign participation in the database
-      // For now, we'll just return true to simulate success
-      return true;
-    } catch (error) {
-      console.error('Error leaving campaign:', error);
-      return false;
-    }
+  // eslint-disable-next-line no-unused-vars
+  async leaveCampaign(_campaignId?: string, _userId?: string): Promise<boolean> {
+    // In a real app, this would update the user's campaign participation in the database
+    // For now, we'll just return true to simulate success
+    return true;
   }
 
   // Get campaign participants
-  async getCampaignParticipants(campaignId: string): Promise<string[]> {
-    try {
-      // In a real app, this would fetch from the database
-      // For now, return an empty array
-      return [];
-    } catch (error) {
-      console.error('Error getting campaign participants:', error);
-      return [];
-    }
+  // eslint-disable-next-line no-unused-vars
+  async getCampaignParticipants(_campaignId?: string): Promise<string[]> {
+    // In a real app, this would fetch from the database
+    // For now, return an empty array
+    return [];
   }
 
   // Save campaigns (for demonstration - in real app would make API call)
   async saveCampaigns(): Promise<boolean> {
-    try {
-      // In a real application, this would make an API call to save data
-      return true;
-    } catch (error) {
-      console.error('Error saving campaigns:', error);
-      return false;
-    }
+    // In a real application, this would make an API call to save data
+    return true;
   }
 }
 

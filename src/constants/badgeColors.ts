@@ -13,13 +13,12 @@ const GRADIENT_COLORS = [
 export const getBadgeColorAlphabetical = (badgeName: string): string => {
   // Get all possible badge names in alphabetical order
   const allBadgeNames = [
-    'Collaboration',
-    'Diversity', 
-    'Engagement',
-    'Excellence',
-    'Fitness God',
-    'Green God',
-    'Integrity'
+    'Analytical Thinking',
+    'Effective Communication',
+    'Intellectual Curiosity',
+    'Resilience',
+    'Risk Awareness',
+    'Teamwork'
   ].sort((a, b) => a.localeCompare(b));
   
   // Find the index of this badge name in the alphabetical list
@@ -45,13 +44,12 @@ export const createGradientFromColor = (color: string): string => {
 // Helper function to get short name for badge display
 export const getShortName = (badgeName: string): string => {
   const shortMap: Record<string, string> = {
-    'Integrity': 'INT',
-    'Diversity': 'DIV',
-    'Excellence': 'EXC',
-    'Collaboration': 'COL',
-    'Engagement': 'ENG',
-    'Fitness God': 'FIT',
-    'Green God': 'GRN'
+    'Analytical Thinking': 'AT',
+    'Effective Communication': 'EC',
+    'Intellectual Curiosity': 'IC',
+    'Resilience': 'RES',
+    'Risk Awareness': 'RA',
+    'Teamwork': 'TW'
   };
   return shortMap[badgeName] || 'BADGE';
 };

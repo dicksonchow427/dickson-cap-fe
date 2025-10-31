@@ -18,11 +18,11 @@ const UserProfile: React.FC<UserProfileProps> = ({
       <div id="user-profile-content" className="space-y-4" data-testid="user-profile-content-wrapper">
         <div id="user-profile-info" className="flex items-center space-x-3" data-testid="user-profile-info-section">
           <div id="user-avatar-container" className="relative" data-testid="user-avatar-wrapper">
-            <img 
+            <img
               id="user-profile-avatar"
               src={avatar}
               alt={name}
-              className="w-14 h-14 rounded-full object-cover"
+              className="w-16 h-16 rounded-full object-cover"
               data-testid="user-profile-avatar-image"
             />
           </div>
@@ -31,17 +31,17 @@ const UserProfile: React.FC<UserProfileProps> = ({
             <p id="user-profile-title" className="text-base text-gray-500" data-testid="user-profile-title-text">{title}</p>
           </div>
         </div>
-        
-        <button 
+
+        <button
           id="recognize-colleagues-button"
           onClick={onRecognizeClick}
           className="w-full bg-[#13426B] text-white text-base font-semibold py-3 px-6 rounded-full flex items-center justify-center space-x-2 hover:bg-[#13426B] transition-colors"
           data-testid="recognize-colleagues-action-button"
         >
-          <img 
+          <img
             id="recognize-button-icon"
-            src="/images/img_group.svg" 
-            alt="" 
+            src="/images/img_group.svg"
+            alt=""
             className="w-4 h-4"
             data-testid="recognize-button-icon-image"
           />
