@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 
 // Import types
 import { TabType, FilterType, RecognitionFormData, Badge } from '../../types/dashboard';
