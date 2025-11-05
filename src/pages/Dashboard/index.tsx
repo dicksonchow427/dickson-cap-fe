@@ -285,7 +285,7 @@ const Dashboard = () => {
     );
   }
 
-  const Helmetany = Helmet as any; // Temporary workaround for Helmet type issues
+  const Helmetany = Helmet as any;
 
   return (
     <>

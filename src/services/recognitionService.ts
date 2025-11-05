@@ -305,7 +305,7 @@ class RecognitionService {
 
     // If userId is provided, filter to received recognitions only (where user is receiver)
     if (userId) {
-      recognitions = recognitions.filter(rec => 
+      recognitions = recognitions.filter(rec =>
         rec.receiverId === userId
       );
     }
@@ -330,25 +330,17 @@ class RecognitionService {
   }
 
   // Get available badge options for recognition creation
+  // Returns all available badges regardless of campaigns
   async getAvailableBadges(): Promise<{ id: string; name: string; type: 'Values' | 'Campaign' }[]> {
-    try {
-      const campaigns = await campaignService.getAllCampaigns();
-      return campaigns.map(campaign => ({
-        id: campaign.badges.id,
-        name: campaign.badges.name,
-        type: campaign.badges.type
-      }));
-    } catch (error) {
-      console.error('Error getting available badges:', error);
-      return [
-        { id: 'badges_000001', name: 'Integrity', type: 'Values' },
-        { id: 'badges_000002', name: 'Diversity', type: 'Values' },
-        { id: 'badges_000003', name: 'Excellence', type: 'Values' },
-        { id: 'badges_000004', name: 'Collaboration', type: 'Values' },
-        { id: 'badges_000005', name: 'Engagement', type: 'Values' },
-        { id: 'badges_202502', name: 'Wellness', type: 'Campaign' }
-      ];
-    }
+    // Always return the full list of available badges
+    return [
+      { id: 'badges_000001', name: 'Integrity', type: 'Values' },
+      { id: 'badges_000002', name: 'Diversity', type: 'Values' },
+      { id: 'badges_000003', name: 'Excellence', type: 'Values' },
+      { id: 'badges_000004', name: 'Collaboration', type: 'Values' },
+      { id: 'badges_000005', name: 'Engagement', type: 'Values' },
+      { id: 'badges_202502', name: 'Wellness', type: 'Campaign' }
+    ];
   }
 
   // Save recognitions (mock - in real app would be API call)

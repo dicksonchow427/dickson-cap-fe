@@ -80,7 +80,7 @@
         "badges": {
             "id": "badges_000005",
             "name": "Engagement",
-            "type": "Values",
+            "campaign": "Annual Dinner",
             "photo": "engagement_badges.png"
         },
         "message": "Thanks for always being so engaged and supportive in team activities!",
@@ -94,7 +94,7 @@
         "receiver": "Daniel Ho",
         "receiverId": "20105",
         "receiverPhoto": "danielho.png",
-        "campaign": "Values",
+        "campaign": "Annual Dinner",
         "likes": [
             {
                 "id": "20102"
@@ -120,7 +120,7 @@
         "receiver": "Frank Liu",
         "receiverId": "20107",
         "receiverPhoto": "frankliu.png",
-        "campaign": "Values",
+        "campaign": "Dragon Boat",
         "likes": [
             {
                 "id": "20108"
@@ -135,7 +135,7 @@
         "badges": {
             "id": "badges_000001",
             "name": "Integrity",
-            "type": "Values",
+            "type": "Dragon Boat",
             "photo": "integrity_badges.png"
         },
         "message": "Your consistent honesty and ethical behavior sets a great example for the team.",
@@ -149,7 +149,7 @@
         "receiver": "Iris Tam",
         "receiverId": "20110",
         "receiverPhoto": "iristam.png",
-        "campaign": "Values",
+        "campaign": "Green Week",
         "likes": [
             {
                 "id": "20109"
@@ -178,7 +178,7 @@
         "receiver": "Frank Liu",
         "receiverId": "20107",
         "receiverPhoto": "frankliu.png",
-        "campaign": "Values",
+        "campaign": "Annual Dinner",
         "likes": [
             {
                 "id": "20106"
@@ -204,7 +204,7 @@
         "receiver": "Grace Chen",
         "receiverId": "20108",
         "receiverPhoto": "gracechen.png",
-        "campaign": "Values",
+        "campaign": "Annual Dinner",
         "likes": [
             {
                 "id": "20107"
@@ -236,7 +236,7 @@
         "receiver": "Emily Wong",
         "receiverId": "20106",
         "receiverPhoto": "emilywong.png",
-        "campaign": "Values",
+        "campaign": "Dragon Boat",
         "likes": [
             {
                 "id": "20108"
@@ -265,7 +265,7 @@
         "receiver": "Grace Chen",
         "receiverId": "20108",
         "receiverPhoto": "gracechen.png",
-        "campaign": "Values",
+        "campaign": "Dragon Boat",
         "likes": [
             {
                 "id": "20104"
@@ -294,7 +294,7 @@
         "receiver": "Iris Tam",
         "receiverId": "20110",
         "receiverPhoto": "iristam.png",
-        "campaign": "Values",
+        "campaign": "Annual Dinner",
         "likes": [
             {
                 "id": "20107"

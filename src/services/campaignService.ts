@@ -1,4 +1,4 @@
-import { Campaign, CampaignData, CampaignStats, CampaignFilters } from '../types/dashboard';
+import { Campaign, CampaignData, CampaignStats, CampaignFilters, RecognitionData } from '../types/dashboard';
 import { persistenceService } from './persistenceService';
 import { CHART_COLORS } from '../constants/badgeColors';
 
@@ -146,21 +146,34 @@ class CampaignService {
   async getCampaignDistributionData(): Promise<{ name: string; value: number; color: string; }[]> {
     let campaigns = await this.loadCampaigns();
 
-    // Count campaigns by badge type
-    const typeCount: { [key: string]: number } = {};
-    campaigns.forEach(campaign => {
-      const typeName = campaign.badges.type;
-      typeCount[typeName] = (typeCount[typeName] || 0) + 1;
+    // Load recognitions to count by campaign name
+    let recognitions: RecognitionData[] = [];
+    try {
+      recognitions = await persistenceService.readFromFile('recognition.json');
+    } catch (error) {
+      console.error('Error loading recognitions for campaign distribution:', error);
+    }
+
+    // Count recognitions by campaign name
+    const campaignCount: { [key: string]: number } = {};
+    recognitions.forEach(recognition => {
+      const campaignName = recognition.campaign || 'Unknown';
+      campaignCount[campaignName] = (campaignCount[campaignName] || 0) + 1;
     });
 
-    // Sort by name (alphabetical)
-    const sortedTypes = Object.entries(typeCount)
-      .sort(([a], [b]) => a.localeCompare(b)); // Sort by name alphabetically
+    // Get campaign names from campaigns list and create distribution data
+    // Include all campaigns from the campaigns list, even if they have 0 recognitions
+    const distributionData = campaigns
+      .map(campaign => ({
+        name: campaign.name,
+        value: campaignCount[campaign.name] || 0
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically
 
     // Assign colors sequentially based on order in data
-    return sortedTypes.map(([name, value], index) => ({
-      name: name === 'Values' ? 'Values Campaigns' : 'Special Campaigns',
-      value,
+    return distributionData.map((item, index) => ({
+      name: item.name,
+      value: item.value,
       color: CHART_COLORS[index % CHART_COLORS.length]
     }));
   }
