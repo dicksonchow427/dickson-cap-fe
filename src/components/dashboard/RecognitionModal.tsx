@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { User, Badge } from '../../types/dashboard';
 import { RecognitionModalState } from '../../types/dashboard';
 import { getBadgeImage } from '../../utils/badgeImages';
@@ -46,6 +46,37 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
 
   const [searchTerm, setSearchTerm] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+
+  // Tooltip state (show after 1s, 10px text). Enabled only when text exists
+  const [visibleTooltipId, setVisibleTooltipId] = useState<string | null>(null);
+  const hoverTimerRef = useRef<number | null>(null);
+
+  const badgeDescriptions: Record<string, string> = useMemo(() => ({
+    Integrity: 'Acting with honesty, transparency, and accountability to uphold trust and confidence in everything we do.',
+    Excellence: 'Striving for world-class performance through innovation, continuous improvement, and a commitment to quality.',
+    Diversity: 'Embracing different perspectives and backgrounds to foster an inclusive and dynamic workplace.',
+    Engagement: 'Building strong relationships through open dialogue, collaboration, and responsiveness to stakeholder needs.',
+    Collaboration: 'Working together across teams and borders to achieve shared goals and drive collective success.'
+  }), []);
+
+  const handleTooltipEnter = (id: string, hasText: boolean) => {
+    if (!hasText) return;
+    if (hoverTimerRef.current) {
+      window.clearTimeout(hoverTimerRef.current);
+      hoverTimerRef.current = null;
+    }
+    hoverTimerRef.current = window.setTimeout(() => {
+      setVisibleTooltipId(id);
+    }, 1000);
+  };
+
+  const handleTooltipLeave = () => {
+    if (hoverTimerRef.current) {
+      window.clearTimeout(hoverTimerRef.current);
+      hoverTimerRef.current = null;
+    }
+    setVisibleTooltipId(null);
+  };
 
   // Filter users (exclude current user)
   const availableUsers = useMemo(() => {
@@ -95,9 +126,6 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
           setSearchTerm(preselectedUser.name);
           setShowDropdown(false);
         }
-      } else {
-        // Show dropdown by default when modal opens so users can see all colleagues
-        setShowDropdown(true);
       }
     }
   }, [isOpen, availableBadges, preselectedUserId, availableUsers]);
@@ -179,7 +207,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
     }
   };
 
-  // Handle input focus
+  // Handle input focus to open dropdown
   const handleInputFocus = () => {
     setShowDropdown(true);
   };
@@ -209,7 +237,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
       aria-labelledby="recognition-modal-title"
     >
       <div
-        className="bg-white rounded-2xl shadow-xl max-w-md w-full h-[90vh] flex flex-col overflow-hidden"
+        className="bg-white rounded-2xl shadow-xl w-2/3 h-[90vh] flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -223,7 +251,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
             </h2>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 transition-colors"
+              className="text-gray-400 hover:text-gray-600 transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Close modal"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -253,19 +281,19 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
                   onFocus={handleInputFocus}
                   onBlur={handleInputBlur}
                   placeholder="Search for a colleague..."
-                  className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-base focus:ring-2 focus:ring-[#13426B] focus:border-transparent"
+                  className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-base focus:ring-2 focus:ring-primary-background focus:border-transparent"
                 />
               </div>
 
               {/* Dropdown */}
               {showDropdown && filteredUsers.length > 0 && (
-                <div className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-48 overflow-y-auto">
+                <div className="mt-1 w-full bg-white border border-gray-200 rounded-lg shadow max-h-48 overflow-y-auto">
                   {filteredUsers.map((user) => (
                     <button
                       key={user.id}
                       type="button"
                       onClick={() => handleUserSelect(user)}
-                      className="w-full px-4 py-3 text-left hover:bg-gray-50 focus:bg-gray-50 focus:outline-none border-b border-gray-100 last:border-b-0"
+                      className="w-full px-4 py-3 text-left hover:bg-gray-50 focus:bg-gray-50 focus:outline-none border-b border-gray-100 last:border-b-0 min-h-[44px]"
                     >
                       <div className="flex items-center space-x-3">
                         <img
@@ -305,7 +333,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
 
               {/* Selected User Display */}
               {state.selectedUser && !showDropdown && (
-                <div className="mt-2 flex items-center space-x-3 p-2 bg-[#13426B]/10 rounded-lg">
+                <div className="mt-2 flex items-center space-x-3 p-2 bg-primary-background/10 rounded-lg">
                   <img
                     src={`/images/${state.selectedUser.photo}`}
                     alt={state.selectedUser.name}
@@ -325,51 +353,126 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
             <label className="block text-base font-medium text-gray-700">
               Select Recognition Badge
             </label>
-            <div className="grid grid-cols-3 gap-1">
-              {availableBadges
-                .sort((a, b) => a.name.localeCompare(b.name))
-                .map((badge) => {
-                  const isSelected = state.selectedBadge?.id === badge.id;
-                  const badgeImageInfo = getBadgeImage(badge.name);
+            <div className="mx-[15px] space-y-3">
+              {/* First row: 5 core value badges */}
+              <label className="block text-base font-medium text-gray-700">
+                Corporate Value Badge
+              </label>
+              <div className="grid grid-cols-5 gap-2">
+                {availableBadges
+                  .filter(b => b.type === 'Values')
+                  .sort((a, b) => {
+                    // Enforce specific core values order
+                    const order = ['Integrity', 'Diversity', 'Excellence', 'Collaboration', 'Engagement'];
+                    return order.indexOf(a.name) - order.indexOf(b.name);
+                  })
+                  .map((badge) => {
+                    const isSelected = state.selectedBadge?.id === badge.id;
+                    const badgeImageInfo = getBadgeImage(badge.name);
+                    const description = badgeDescriptions[badge.name as keyof typeof badgeDescriptions];
 
-                  return (
-                    <button
-                      key={badge.id}
-                      type="button"
-                      onClick={() => handleBadgeSelect(badge)}
-                      className={`
-                      p-1 rounded-lg border-2 transition-all duration-200 text-center
-                      ${isSelected
-                          ? 'border-[#13426B] bg-[#13426B]/10 ring-2 ring-[#13426B] ring-opacity-20' : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
-                        }
-                    `}
-                    >
-                      <div className="flex flex-col items-center space-y-0.5">
-                        <div className="w-10 h-10 rounded-full flex items-center justify-center bg-white border-2 border-gray-200">
-                          <img
-                            src={badgeImageInfo.imagePath}
-                            alt={badgeImageInfo.altText}
-                            className="w-8 h-8 object-contain"
-                            onError={(e) => {
-                              // Fallback to a default image if the badge image fails to load
-                              e.currentTarget.src = '/images/badges/Teamwork.png';
-                            }}
-                          />
-                        </div>
-                        <div className="flex items-center justify-center">
-                          <img
-                            src="/images/img_mask_group.png"
-                            alt="Trophy"
-                            className="w-3 h-3"
-                          />
-                        </div>
-                        <div className="text-sm font-medium text-gray-700 leading-tight">
-                          {badge.name}
-                        </div>
+                    return (
+                      <div key={badge.id} className="relative" onMouseEnter={() => handleTooltipEnter(badge.id, !!description)} onMouseLeave={handleTooltipLeave}>
+                        <button
+                          type="button"
+                          onClick={() => handleBadgeSelect(badge)}
+                          className={`
+                          w-full p-1 rounded-lg border-2 transition-all duration-200 text-center
+                          ${isSelected
+                              ? 'border-[#13426B] bg-[#13426B]/10 ring-2 ring-[#13426B] ring-opacity-20' : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                            }
+                        `}
+                        >
+                          <div className="flex flex-col items-center space-y-0.5">
+                            <div className="w-10 h-10 rounded-full flex items-center justify-center bg-white border-2 border-gray-200">
+                              <img
+                                src={badgeImageInfo.imagePath}
+                                alt={badgeImageInfo.altText}
+                                className="w-8 h-8 object-contain"
+                                onError={(e) => {
+                                  e.currentTarget.src = '/images/badges/Wellness.png';
+                                }}
+                              />
+                            </div>
+                            <div className="flex items-center justify-center">
+                              <img
+                                src="/images/img_mask_group.png"
+                                alt="Trophy"
+                                className="w-3 h-3"
+                              />
+                            </div>
+                            <div className="text-sm font-medium text-gray-700 leading-tight">
+                              {badge.name}
+                            </div>
+                          </div>
+                        </button>
+                        {description && visibleTooltipId === badge.id && (
+                          <div className="absolute z-50 left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 bg-black text-white rounded shadow text-[10px] pointer-events-none w-[750px] max-w-[calc(100%-30px)] text-center break-words">
+                            {description}
+                          </div>
+                        )}
                       </div>
-                    </button>
-                  );
-                })}
+                    );
+                  })}
+              </div>
+
+              {/* Second row: other campaigns (e.g., Wellness) */}
+              <label className="block text-base font-medium text-gray-700">
+                Campaign Badge
+              </label>
+              <div className="grid grid-cols-5 gap-2">
+                {availableBadges
+                  .filter(b => b.type !== 'Values')
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((badge) => {
+                    const isSelected = state.selectedBadge?.id === badge.id;
+                    const badgeImageInfo = getBadgeImage(badge.name);
+                    const description = badgeDescriptions[badge.name as keyof typeof badgeDescriptions];
+
+                    return (
+                      <div key={badge.id} className="relative" onMouseEnter={() => handleTooltipEnter(badge.id, !!description)} onMouseLeave={handleTooltipLeave}>
+                        <button
+                          type="button"
+                          onClick={() => handleBadgeSelect(badge)}
+                          className={`
+                          w-full p-1 rounded-lg border-2 transition-all duration-200 text-center
+                          ${isSelected
+                              ? 'border-[#13426B] bg-[#13426B]/10 ring-2 ring-[#13426B] ring-opacity-20' : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                            }
+                        `}
+                        >
+                          <div className="flex flex-col items-center space-y-0.5">
+                            <div className="w-10 h-10 rounded-full flex items-center justify-center bg-white border-2 border-gray-200">
+                              <img
+                                src={badgeImageInfo.imagePath}
+                                alt={badgeImageInfo.altText}
+                                className="w-8 h-8 object-contain"
+                                onError={(e) => {
+                                  e.currentTarget.src = '/images/badges/Wellness.png';
+                                }}
+                              />
+                            </div>
+                            <div className="flex items-center justify-center">
+                              <img
+                                src="/images/img_mask_group.png"
+                                alt="Trophy"
+                                className="w-3 h-3"
+                              />
+                            </div>
+                            <div className="text-sm font-medium text-gray-700 leading-tight">
+                              {badge.name}
+                            </div>
+                          </div>
+                        </button>
+                        {description && visibleTooltipId === badge.id && (
+                          <div className="absolute z-50 left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 bg-black text-white rounded shadow text-[10px] pointer-events-none w-[750px] max-w-[calc(100%-30px)] text-center break-words">
+                            {description}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
           </div>
 
@@ -384,7 +487,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
                 onChange={handleMessageChange}
                 placeholder="Write your appreciation message..."
                 rows={4}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-base focus:ring-2 focus:ring-[#13426B] focus:border-transparent resize-none"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-base focus:ring-2 focus:ring-primary-background focus:border-transparent resize-none"
               />
               <div className={`absolute bottom-2 right-3 text-base ${isCharacterLimitNear ? 'text-orange-600' : 'text-gray-400'}`}>
                 {characterCount}/{characterLimit}
@@ -422,7 +525,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-opacity-20 transition-colors"
+              className="flex-1 px-4 py-3 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-opacity-20 transition-colors min-h-[44px]"
               disabled={state.isLoading || externalLoading}
             >
               Cancel
@@ -431,9 +534,9 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
               type="submit"
               disabled={isSubmitDisabled}
               className={`
-                flex-1 px-4 py-2 rounded-lg font-medium text-white transition-all duration-200
+                flex-1 px-4 py-3 rounded-lg font-medium text-white transition-all duration-200 min-h-[44px]
                 ${isSubmitDisabled
-                  ? 'bg-gray-300 cursor-not-allowed' : 'bg-[#13426B] hover:bg-[#13426B] focus:ring-2 focus:ring-[#13426B] focus:ring-opacity-20'
+                  ? 'bg-gray-300 cursor-not-allowed' : 'bg-primary-background hover:bg-primary-background focus:ring-2 focus:ring-primary-background focus:ring-opacity-20'
                 }
               `}
             >

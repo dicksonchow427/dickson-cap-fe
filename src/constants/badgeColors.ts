@@ -1,24 +1,30 @@
-// Gradient color palette for badges (light to dark)
-const GRADIENT_COLORS = [
-  '#A1B3C4',  // Light blue-gray
-  '#718EA6',  // Medium blue-gray
-  '#426889',  // Dark blue-gray
-  '#13426B',  // Dark blue
-  '#0F3556',  // Darker blue
-  '#0B2840',  // Darkest blue
-  '#081A2B'   // Extra dark blue
+// Gradient color palette for badges and charts
+export const CHART_COLORS = [
+  '#26CAD3',  // Turquoise
+  '#FFB81C',  // Amber
+  '#2B8098',  // Teal
+  '#5E366E',  // Purple
+  '#EE6478',  // Red/70
+  '#FEDD00',  // Yellow
+  '#1EA2A9',  // Turquoise/120
+  '#B5E3D8',  // Mint
+  '#89A1B5',  // Blue/50
+  '#D5E6EA'   // Teal 20
 ];
+
+// Legacy GRADIENT_COLORS for backward compatibility
+const GRADIENT_COLORS = CHART_COLORS;
 
 // Centralized function to get color for any badge name (alphabetical order)
 export const getBadgeColorAlphabetical = (badgeName: string): string => {
   // Get all possible badge names in alphabetical order
   const allBadgeNames = [
-    'Analytical Thinking',
-    'Effective Communication',
-    'Intellectual Curiosity',
-    'Resilience',
-    'Risk Awareness',
-    'Teamwork'
+    'Collaboration',
+    'Diversity',
+    'Engagement',
+    'Excellence',
+    'Integrity',
+    'Wellness'
   ].sort((a, b) => a.localeCompare(b));
   
   // Find the index of this badge name in the alphabetical list
@@ -44,12 +50,12 @@ export const createGradientFromColor = (color: string): string => {
 // Helper function to get short name for badge display
 export const getShortName = (badgeName: string): string => {
   const shortMap: Record<string, string> = {
-    'Analytical Thinking': 'AT',
-    'Effective Communication': 'EC',
-    'Intellectual Curiosity': 'IC',
-    'Resilience': 'RES',
-    'Risk Awareness': 'RA',
-    'Teamwork': 'TW'
+    'Collaboration': 'COL',
+    'Diversity': 'DIV',
+    'Engagement': 'ENG',
+    'Excellence': 'EXC',
+    'Integrity': 'INT',
+    'Wellness': 'WEL'
   };
   return shortMap[badgeName] || 'BADGE';
 };

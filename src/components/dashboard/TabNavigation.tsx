@@ -16,7 +16,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
       <button
         id="feed-tab-button"
         onClick={() => onTabChange('feed')}
-        className={`flex-1 flex items-center justify-center space-x-2 py-4 px-6 rounded-lg shadow-sm font-semibold text-base transition-colors ${activeTab === 'feed' ? 'bg-[#13426B] text-white' : 'bg-white text-gray-700 hover:bg-gray-50'
+        className={`flex-1 flex items-center justify-center space-x-2 py-4 px-6 rounded-lg shadow-sm font-semibold text-base transition-colors ${activeTab === 'feed' ? 'bg-primary-background text-white' : 'bg-white text-gray-700 hover:bg-gray-50'
           }`}
         data-testid="feed-tab-navigation-button"
       >
@@ -35,7 +35,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
       <button
         id="campaign-tab-button"
         onClick={() => onTabChange('campaign')}
-        className={`flex-1 flex items-center justify-center space-x-2 py-4 px-6 rounded-lg shadow-sm font-semibold text-base transition-colors ${activeTab === 'campaign' ? 'bg-[#13426B] text-white' : 'bg-white text-gray-700 hover:bg-gray-50'
+        className={`flex-1 flex items-center justify-center space-x-2 py-4 px-6 rounded-lg shadow-sm font-semibold text-base transition-colors ${activeTab === 'campaign' ? 'bg-primary-background text-white' : 'bg-white text-gray-700 hover:bg-gray-50'
           }`}
         data-testid="campaign-tab-navigation-button"
       >

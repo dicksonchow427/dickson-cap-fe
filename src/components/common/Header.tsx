@@ -17,8 +17,8 @@ const Header = ({ className }: HeaderProps) => {
           <div className="flex items-center gap-[6px] sm:gap-[8px] md:gap-[10px] lg:gap-[12px]">
 
             {/* Title */}
-            <h1 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-[Open Sans] font-normal leading-[20px] sm:leading-[24px] md:leading-[27px] lg:leading-[30px] text-primary-foreground uppercase">
-              STAFF RECOGNITION SYSTEM
+            <h1 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-[Open Sans] font-semibold leading-[20px] sm:leading-[24px] md:leading-[27px] lg:leading-[30px] text-primary-foreground uppercase">
+              Colleague RECOGNITION SYSTEM
             </h1>
           </div>
 

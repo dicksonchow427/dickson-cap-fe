@@ -35,7 +35,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
         <button
           id="recognize-colleagues-button"
           onClick={onRecognizeClick}
-          className="w-full bg-[#13426B] text-white text-base font-semibold py-3 px-6 rounded-full flex items-center justify-center space-x-2 hover:bg-[#13426B] transition-colors"
+          className="w-full bg-primary-background text-white text-base font-semibold py-4 px-6 rounded-full flex items-center justify-center space-x-2 hover:bg-primary-background transition-colors min-h-[44px]"
           data-testid="recognize-colleagues-action-button"
         >
           <img

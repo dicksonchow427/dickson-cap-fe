@@ -50,7 +50,7 @@ class UserService {
     }).sort((a, b) => b.recognitions - a.recognitions);
   }
 
-  // Get users by department
+  // Get users by division
   async getUsersByDepartment(department: string): Promise<User[]> {
     const users = await this.loadUsers();
     if (department === 'Everyone') {

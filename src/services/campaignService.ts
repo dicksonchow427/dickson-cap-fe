@@ -1,6 +1,6 @@
 import { Campaign, CampaignData, CampaignStats, CampaignFilters } from '../types/dashboard';
 import { persistenceService } from './persistenceService';
-import { getBadgeColorAlphabetical } from '../constants/badgeColors';
+import { CHART_COLORS } from '../constants/badgeColors';
 
 class CampaignService {
   private campaigns: Campaign[] = [];
@@ -153,21 +153,22 @@ class CampaignService {
       typeCount[typeName] = (typeCount[typeName] || 0) + 1;
     });
 
-    // Sort by name (alphabetical) and assign gradient colors in light-to-dark order
+    // Sort by name (alphabetical)
     const sortedTypes = Object.entries(typeCount)
       .sort(([a], [b]) => a.localeCompare(b)); // Sort by name alphabetically
 
-    return sortedTypes.map(([name, value]) => ({
+    // Assign colors sequentially based on order in data
+    return sortedTypes.map(([name, value], index) => ({
       name: name === 'Values' ? 'Values Campaigns' : 'Special Campaigns',
       value,
-      color: getBadgeColorAlphabetical(name)
+      color: CHART_COLORS[index % CHART_COLORS.length]
     }));
   }
 
   // Get badge with color
-  getBadgeWithColor(badgeName: string): { color: string } {
+  getBadgeWithColor(): { color: string } {
     return {
-      color: getBadgeColorAlphabetical(badgeName)
+      color: CHART_COLORS[0] // Default to first color
     };
   }
 

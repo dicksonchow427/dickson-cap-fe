@@ -21,7 +21,7 @@
         ],
         "badges": {
             "id": "badges_000002",
-            "name": "Teamwork",
+            "name": "Diversity",
             "type": "Values",
             "photo": ""
         },
@@ -47,11 +47,11 @@
         ],
         "badges": {
             "id": "badges_202502",
-            "name": "Risk Awareness",
+            "name": "Wellness",
             "type": "Campaign",
-            "photo": "green_week_badges.png"
+            "photo": "wellness_badges.png"
         },
-        "message": "Your commitment to sustainability during Green Week was inspiring!",
+        "message": "Your commitment to wellness and healthy living is inspiring!",
         "datetime": "2025-09-07 14:45:00"
     },
     {
@@ -79,7 +79,7 @@
         ],
         "badges": {
             "id": "badges_000005",
-            "name": "Resilience",
+            "name": "Engagement",
             "type": "Values",
             "photo": "engagement_badges.png"
         },
@@ -105,7 +105,7 @@
         ],
         "badges": {
             "id": "badges_000003",
-            "name": "Intellectual Curiosity",
+            "name": "Excellence",
             "type": "Values",
             "photo": "excellence_badges.png"
         },
@@ -134,7 +134,7 @@
         ],
         "badges": {
             "id": "badges_000001",
-            "name": "Analytical Thinking",
+            "name": "Integrity",
             "type": "Values",
             "photo": "integrity_badges.png"
         },
@@ -163,7 +163,7 @@
         ],
         "badges": {
             "id": "badges_000002",
-            "name": "Teamwork",
+            "name": "Diversity",
             "type": "Values",
             "photo": "diversity_badges.png"
         },
@@ -189,7 +189,7 @@
         ],
         "badges": {
             "id": "badges_000004",
-            "name": "Effective Communication",
+            "name": "Collaboration",
             "type": "Values",
             "photo": "collaboration_badges.png"
         },
@@ -221,7 +221,7 @@
         ],
         "badges": {
             "id": "badges_000003",
-            "name": "Intellectual Curiosity",
+            "name": "Excellence",
             "type": "Values",
             "photo": "excellence_badges.png"
         },
@@ -250,7 +250,7 @@
         ],
         "badges": {
             "id": "badges_000004",
-            "name": "Effective Communication",
+            "name": "Collaboration",
             "type": "Values",
             "photo": "collaboration_badges.png"
         },
@@ -279,7 +279,7 @@
         ],
         "badges": {
             "id": "badges_000003",
-            "name": "Intellectual Curiosity",
+            "name": "Excellence",
             "type": "Values",
             "photo": "excellence_badges.png"
         },
@@ -308,7 +308,7 @@
         ],
         "badges": {
             "id": "badges_000005",
-            "name": "Resilience",
+            "name": "Engagement",
             "type": "Values",
             "photo": "engagement_badges.png"
         },
@@ -334,11 +334,11 @@
         ],
         "badges": {
             "id": "badges_202502",
-            "name": "Risk Awareness",
+            "name": "Wellness",
             "type": "Campaign",
-            "photo": "green_badges.png"
+            "photo": "wellness_badges.png"
         },
-        "message": "Your eco-friendly initiatives are making a real difference!",
+        "message": "Your wellness initiatives are making a real difference!",
         "datetime": "2025-09-15 13:20:00"
     },
     {
@@ -363,7 +363,7 @@
         ],
         "badges": {
             "id": "badges_000001",
-            "name": "Analytical Thinking",
+            "name": "Integrity",
             "type": "Values",
             "photo": "integrity_badges.png"
         },
@@ -392,7 +392,7 @@
         ],
         "badges": {
             "id": "badges_000004",
-            "name": "Effective Communication",
+            "name": "Collaboration",
             "type": "Values",
             "photo": "collaboration_badges.png"
         },
@@ -424,7 +424,7 @@
         ],
         "badges": {
             "id": "badges_000002",
-            "name": "Teamwork",
+            "name": "Diversity",
             "type": "Values",
             "photo": "diversity_badges.png"
         },
@@ -453,7 +453,7 @@
         ],
         "badges": {
             "id": "badges_000005",
-            "name": "Resilience",
+            "name": "Engagement",
             "type": "Values",
             "photo": "engagement_badges.png"
         },
@@ -482,11 +482,11 @@
         ],
         "badges": {
             "id": "badges_202502",
-            "name": "Risk Awareness",
+            "name": "Wellness",
             "type": "Campaign",
-            "photo": "green_badges.png"
+            "photo": "wellness_badges.png"
         },
-        "message": "Your environmental initiatives are making a real impact!",
+        "message": "Your wellness and health initiatives are making a real impact!",
         "datetime": "2025-09-21 13:15:00"
     },
     {
@@ -511,7 +511,7 @@
         ],
         "badges": {
             "id": "badges_000001",
-            "name": "Analytical Thinking",
+            "name": "Integrity",
             "type": "Values",
             "photo": "integrity_badges.png"
         },
@@ -537,7 +537,7 @@
         ],
         "badges": {
             "id": "badges_000003",
-            "name": "Intellectual Curiosity",
+            "name": "Excellence",
             "type": "Values",
             "photo": "excellence_badges.png"
         },
@@ -566,7 +566,7 @@
         ],
         "badges": {
             "id": "badges_000004",
-            "name": "Effective Communication",
+            "name": "Collaboration",
             "type": "Values",
             "photo": "collaboration_badges.png"
         },
@@ -595,7 +595,7 @@
         ],
         "badges": {
             "id": "badges_000002",
-            "name": "Teamwork",
+            "name": "Diversity",
             "type": "Values",
             "photo": "diversity_badges.png"
         },
@@ -624,7 +624,7 @@
         ],
         "badges": {
             "id": "badges_000005",
-            "name": "Resilience",
+            "name": "Engagement",
             "type": "Values",
             "photo": "engagement_badges.png"
         },
@@ -653,7 +653,7 @@
         ],
         "badges": {
             "id": "badges_000003",
-            "name": "Intellectual Curiosity",
+            "name": "Excellence",
             "type": "Values",
             "photo": "excellence_badges.png"
         },
@@ -682,11 +682,11 @@
         ],
         "badges": {
             "id": "badges_202502",
-            "name": "Risk Awareness",
+            "name": "Wellness",
             "type": "Campaign",
-            "photo": "green_badges.png"
+            "photo": "wellness_badges.png"
         },
-        "message": "Your sustainability initiatives are making waves!",
+        "message": "Your wellness initiatives are making waves!",
         "datetime": "2025-09-29 15:55:00"
     },
     {
@@ -708,7 +708,7 @@
         ],
         "badges": {
             "id": "badges_000001",
-            "name": "Analytical Thinking",
+            "name": "Integrity",
             "type": "Values",
             "photo": "integrity_badges.png"
         },
@@ -740,7 +740,7 @@
         ],
         "badges": {
             "id": "badges_000004",
-            "name": "Effective Communication",
+            "name": "Collaboration",
             "type": "Values",
             "photo": "collaboration_badges.png"
         },
@@ -769,7 +769,7 @@
         ],
         "badges": {
             "id": "badges_000002",
-            "name": "Teamwork",
+            "name": "Diversity",
             "type": "Values",
             "photo": "diversity_badges.png"
         },
@@ -798,7 +798,7 @@
         ],
         "badges": {
             "id": "badges_000005",
-            "name": "Resilience",
+            "name": "Engagement",
             "type": "Values",
             "photo": "engagement_badges.png"
         },
@@ -827,11 +827,11 @@
         ],
         "badges": {
             "id": "badges_202502",
-            "name": "Risk Awareness",
+            "name": "Wellness",
             "type": "Campaign",
-            "photo": "green_badges.png"
+            "photo": "wellness_badges.png"
         },
-        "message": "Your commitment to sustainability is exemplary!",
+        "message": "Your commitment to wellness is exemplary!",
         "datetime": "2025-10-05 15:45:00"
     },
     {
@@ -856,7 +856,7 @@
         ],
         "badges": {
             "id": "badges_000003",
-            "name": "Intellectual Curiosity",
+            "name": "Excellence",
             "type": "Values",
             "photo": "excellence_badges.png"
         },

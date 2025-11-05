@@ -7,7 +7,7 @@ import { useUsers } from '../../hooks/useUsers';
 import { usePaginatedRecognitions } from '../../hooks/usePaginatedRecognitions';
 import { useRecognitionActions } from '../../hooks/useRecognitionActions';
 import { useCampaigns } from '../../hooks/useCampaigns';
-import userService from '../../services/userService';
+import { CHART_COLORS } from '../../constants/badgeColors';
 import HeroSection from '../../components/dashboard/HeroSection';
 
 // Import components
@@ -27,7 +27,6 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<TabType>('feed');
   const [filterBy, setFilterBy] = useState<FilterType>('Everyone');
   const [currentUserId] = useState('20101'); // Peter Chan as current user
-  const [currentPersonFilter, setCurrentPersonFilter] = useState<string | undefined>(undefined);
 
   // Recognition modal state
   const [isRecognitionModalOpen, setIsRecognitionModalOpen] = useState(false);
@@ -66,7 +65,6 @@ const Dashboard = () => {
     pageSize: 10,
     autoLoad: true,
     departmentFilter: filterBy,
-    personFilter: currentPersonFilter,
     activeTab
   });
 
@@ -93,10 +91,10 @@ const Dashboard = () => {
     const loadBadges = async () => {
       try {
         const badges = await getAvailableBadges();
-        setAvailableBadges(badges.map(badge => ({
+        setAvailableBadges(badges.map((badge, index) => ({
           ...badge,
           number: 0, // Default value for Badge interface 
-          color: userService.getBadgesWithColors([{ ...badge, number: 0 }])[0]?.color
+          color: CHART_COLORS[index % CHART_COLORS.length]
         })));
       } catch (err) {
         console.error('Error loading badges:', err);
@@ -107,16 +105,6 @@ const Dashboard = () => {
       loadBadges();
     }
   }, [isRecognitionModalOpen, getAvailableBadges]);
-
-  // Filtering is now handled at the service level in the paginated hook
-
-
-  // Get current user badges with colors
-  const userBadges = useMemo(() => {
-    if (!currentUser) return [];
-    return userService.getBadgesWithColors(currentUser.received_badges)
-      .filter(badge => badge.number > 0);
-  }, [currentUser]);
 
   // Generate chart data from real recognitions and campaigns
   const [recognitionDistributionData, setRecognitionDistributionData] = useState<{ name: string; value: number; color: string; }[]>([]);
@@ -142,6 +130,39 @@ const Dashboard = () => {
     loadChartData();
   }, [getDistributionData, getTrendData, getCampaignDistributionData]);
 
+  // Get all badges (including those with 0 count) and merge with recognition counts
+  const [allUserBadges, setAllUserBadges] = useState<Badge[]>([]);
+
+  useEffect(() => {
+    const loadAllBadges = async () => {
+      try {
+        const badges = await getAvailableBadges();
+
+        // Create a map from recognitionDistributionData for badge counts and colors
+        const badgeCountMap = new Map();
+        const badgeColorMap = new Map();
+        recognitionDistributionData.forEach(badge => {
+          badgeCountMap.set(badge.name, badge.value);
+          badgeColorMap.set(badge.name, badge.color);
+        });
+
+        // Merge available badges with counts and colors from recognitions (or 0 if not found)
+        const mergedBadges = badges.map(badge => ({
+          ...badge,
+          number: badgeCountMap.get(badge.name) || 0,
+          color: badgeColorMap.get(badge.name) || '#13426B'
+        }));
+
+        setAllUserBadges(mergedBadges);
+      } catch (err) {
+        console.error('Error loading all badges:', err);
+        setAllUserBadges([]);
+      }
+    };
+
+    loadAllBadges();
+  }, [getAvailableBadges, recognitionDistributionData]);
+
   // Calculate current month stats
   const currentReceived = useMemo(() => {
     if (!currentUser) return 0;
@@ -164,20 +185,12 @@ const Dashboard = () => {
     setIsRecognitionModalOpen(true);
   };
 
-  const handleFilterByBadge = async (personName: string) => {
-    // Set person filter; hook will reload via effect
-    setCurrentPersonFilter(personName);
-  };
-
-  const handleClearPersonFilter = async () => {
-    // Clear person filter; hook will reload via effect
-    setCurrentPersonFilter(undefined);
-  };
-
-  // Handle department filter changes
-  const handleFilterChange = async (newFilter: FilterType) => {
-    // Update department filter; hook will reload via effect
+  // Handle division filter changes
+  const handleFilterChange = (newFilter: FilterType) => {
+    // Update division filter; hook will reload via effect
     setFilterBy(newFilter);
+    // Reset to first page when filter changes
+    goToPage(1);
   };
 
   const handleRecognizeFromProfile = () => {
@@ -222,7 +235,7 @@ const Dashboard = () => {
   /*
   const getCampaignContext = async (recognition: Recognition) => {
     // Mock implementation - in real app would use recognition.campaign field
-    if (recognition.category === 'Risk Awareness') {
+    if (recognition.category === 'Wellness') {
       const campaign = campaigns.find(c => c.badges.name === recognition.category);
       if (campaign) {
         return {
@@ -247,7 +260,7 @@ const Dashboard = () => {
     return (
       <div id="dashboard-loading" className="min-h-screen bg-gray-50 flex items-center justify-center" data-testid="dashboard-loading">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#13426B] mx-auto mb-5"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-background mx-auto mb-5"></div>
           <p className="text-gray-600">Loading dashboard...</p>
         </div>
       </div>
@@ -263,7 +276,7 @@ const Dashboard = () => {
           <p className="text-red-600 mb-5">Error loading dashboard: {error}</p>
           <button
             onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-[#13426B] text-white rounded hover:bg-[#13426B]"
+            className="px-4 py-2 bg-primary-background text-white rounded hover:bg-primary-background"
           >
             Retry
           </button>
@@ -275,7 +288,7 @@ const Dashboard = () => {
   return (
     <>
       <Helmet>
-        <title>Staff Recognition Dashboard</title>
+        <title>Colleague Appreciation Platform</title>
         <meta name="description" content="Employee recognition platform with real-time appreciation feeds and team analytics" />
       </Helmet>
 
@@ -299,7 +312,6 @@ const Dashboard = () => {
               <ColleaguesList
                 colleagues={colleagues}
                 onRecognizeColleague={handleRecognize}
-                onFilterByBadge={handleFilterByBadge}
               />
             </aside>
 
@@ -310,7 +322,6 @@ const Dashboard = () => {
                 onTabChange={(tab) => {
                   setActiveTab(tab);
                   setFilterBy('Everyone');
-                  setCurrentPersonFilter(undefined);
                   // Reset to first page when changing tabs
                   goToPage(1);
                 }}
@@ -319,9 +330,7 @@ const Dashboard = () => {
               <FilterSection
                 filterBy={filterBy}
                 onFilterChange={handleFilterChange}
-                recognitionCount={totalCount}
-                currentPersonFilter={currentPersonFilter}
-                onClearPersonFilter={handleClearPersonFilter}
+                userDepartment={currentUser?.department_division}
               />
 
               {/* Feed Content */}
@@ -335,7 +344,6 @@ const Dashboard = () => {
                           recognition={recognition}
                           onLike={handleLike}
                           onRecognize={handleRecognize}
-                          onFilterByBadge={handleFilterByBadge}
                           campaignContext={undefined} // Would be populated in real app
                         />
                       ))
@@ -396,7 +404,7 @@ const Dashboard = () => {
                         {recognitions
                           .filter(recognition => {
                             // Filter recognitions that are related to campaigns
-                            return recognition.category === 'Risk Awareness' ||
+                            return recognition.category === 'Wellness' ||
                               recognition.category === 'Fitness Week' ||
                               recognition.category === 'Green Week';
                           })
@@ -407,7 +415,6 @@ const Dashboard = () => {
                               recognition={recognition}
                               onLike={handleLike}
                               onRecognize={handleRecognize}
-                              onFilterByBadge={handleFilterByBadge}
                               campaignContext={undefined} // Would be populated in real app
                             />
                           ))}
@@ -421,12 +428,12 @@ const Dashboard = () => {
             {/* Right Sidebar */}
             <aside id="dashboard-right-sidebar" className="lg:col-span-3 space-y-6 text-sm" data-testid="dashboard-sidebar-right">
               <BadgesGrid
-                badges={userBadges}
+                badges={allUserBadges}
               />
 
               {/* Show different charts based on active tab */}
               {activeTab === 'feed' && recognitionDistributionData.length > 0 && (
-                <DistributionChart data={recognitionDistributionData} title="My Recognitions" />
+                <DistributionChart data={recognitionDistributionData} title="My Recognition" />
               )}
 
               {activeTab === 'campaign' && (

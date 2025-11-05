@@ -2,7 +2,7 @@ import { RecognitionData, Recognition, RecognitionFormData } from '../types/dash
 import { userService } from './userService';
 import { campaignService } from './campaignService';
 import { persistenceService } from './persistenceService';
-import { getBadgeColorAlphabetical } from '../constants/badgeColors';
+import { CHART_COLORS } from '../constants/badgeColors';
 
 class RecognitionService {
   private recognitionsData: RecognitionData[] = [];
@@ -120,26 +120,26 @@ class RecognitionService {
         );
       } else {
         try {
-          // Load users to get department information
+          // Load users to get division information
           const response = await fetch('/data/users.json');
           const users = await response.json();
 
-          // Create a map of user ID to department
-          const userDepartmentMap = new Map();
+          // Create a map of user ID to division
+          const userDivisionMap = new Map();
           users.forEach((user: { id: string; department_division: string }) => {
-            userDepartmentMap.set(user.id, user.department_division);
+            userDivisionMap.set(user.id, user.department_division);
           });
 
-          // Filter recognitions by department
+          // Filter recognitions by division
           allRecognitions = allRecognitions.filter(recognition => {
-            const giverDepartment = userDepartmentMap.get(recognition.giverId);
-            const receiverDepartment = userDepartmentMap.get(recognition.receiverId);
+            const giverDivision = userDivisionMap.get(recognition.giverId);
+            const receiverDivision = userDivisionMap.get(recognition.receiverId);
 
-            // Include recognition if either giver or receiver is in the selected department
-            return giverDepartment === departmentFilter || receiverDepartment === departmentFilter;
+            // Include recognition if either giver or receiver is in the selected division
+            return giverDivision === departmentFilter || receiverDivision === departmentFilter;
           });
         } catch (error) {
-          console.error('Error filtering recognitions by department:', error);
+          console.error('Error filtering recognitions by division:', error);
           // Continue with all recognitions if filtering fails
         }
       }
@@ -300,8 +300,15 @@ class RecognitionService {
   }
 
   // Generate distribution data from badges
-  async getBadgeDistributionData(): Promise<{ name: string; value: number; color: string; }[]> {
-    const recognitions = await this.getAllRecognitions();
+  async getBadgeReceivedData(userId?: string): Promise<{ name: string; value: number; color: string; }[]> {
+    let recognitions = await this.getAllRecognitions();
+
+    // If userId is provided, filter to received recognitions only (where user is receiver)
+    if (userId) {
+      recognitions = recognitions.filter(rec => 
+        rec.receiverId === userId
+      );
+    }
 
     // Count badge types
     const badgeCount: { [key: string]: number } = {};
@@ -310,14 +317,15 @@ class RecognitionService {
       badgeCount[badgeName] = (badgeCount[badgeName] || 0) + 1;
     });
 
-    // Sort badges by name (alphabetical) and assign gradient colors in light-to-dark order
+    // Get sorted badges (alphabetical for consistency)
     const sortedBadges = Object.entries(badgeCount)
       .sort(([a], [b]) => a.localeCompare(b)); // Sort by name alphabetically
 
-    return sortedBadges.map(([name, value]) => ({
+    // Assign colors sequentially based on order in data
+    return sortedBadges.map(([name, value], index) => ({
       name,
       value,
-      color: getBadgeColorAlphabetical(name)
+      color: CHART_COLORS[index % CHART_COLORS.length]
     }));
   }
 
@@ -333,12 +341,12 @@ class RecognitionService {
     } catch (error) {
       console.error('Error getting available badges:', error);
       return [
-        { id: 'badges_000001', name: 'Analytical Thinking', type: 'Values' },
-        { id: 'badges_000002', name: 'Teamwork', type: 'Values' },
-        { id: 'badges_000003', name: 'Intellectual Curiosity', type: 'Values' },
-        { id: 'badges_000004', name: 'Effective Communication', type: 'Values' },
-        { id: 'badges_000005', name: 'Resilience', type: 'Values' },
-        { id: 'badges_202502', name: 'Risk Awareness', type: 'Campaign' }
+        { id: 'badges_000001', name: 'Integrity', type: 'Values' },
+        { id: 'badges_000002', name: 'Diversity', type: 'Values' },
+        { id: 'badges_000003', name: 'Excellence', type: 'Values' },
+        { id: 'badges_000004', name: 'Collaboration', type: 'Values' },
+        { id: 'badges_000005', name: 'Engagement', type: 'Values' },
+        { id: 'badges_202502', name: 'Wellness', type: 'Campaign' }
       ];
     }
   }

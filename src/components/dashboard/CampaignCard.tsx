@@ -32,7 +32,7 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
         <div className="flex items-center">
           <div className="flex items-center space-x-3">
             {/* Corporate Communications Avatar */}
-            <div className="w-10 h-10 bg-[#13426B] rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-primary-background rounded-full flex items-center justify-center">
               <span className="text-white text-lg font-bold">CC</span>
             </div>
             <div>
@@ -61,7 +61,7 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
       {/* Campaign Content */}
       <div className="p-4">
         {/* Campaign Title */}
-        <h2 className="text-lg font-bold text-[#13426B] mb-3">{campaign.name}</h2>
+        <h2 className="text-lg font-bold text-primary-background mb-3">{campaign.name}</h2>
 
         {/* Campaign Message */}
         <div className="mb-2">
@@ -82,13 +82,12 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
                 className="w-12 h-12 object-contain"
                 onError={(e) => {
                   // Fallback to a default image if the badge image fails to load
-                  e.currentTarget.src = '/images/badges/Teamwork.png';
+                  e.currentTarget.src = '/images/badges/Wellness.png';
                 }}
               />
             </div>
             <div>
               <p className="font-medium text-gray-800 text-sm">{campaign.badges.name} Badge</p>
-              <p className="text-sm text-gray-600">{campaign.badges.type} Campaign</p>
             </div>
           </div>
         </div>
@@ -96,7 +95,7 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
         {/* Campaign Stats */}
         <div className="mb-2 flex items-center justify-between text-lg text-gray-600">
           <span>{participantCount} participants</span>
-          <span className={`px-2 py-1 rounded text-base ${campaign.badges.type === 'Values' ? 'bg-[#13426B]/10 text-[#13426B]' : 'bg-green-100 text-green-800'
+          <span className={`px-2 py-1 rounded text-base ${campaign.badges.type === 'Values' ? 'bg-primary-background/10 text-primary-background' : 'bg-green-100 text-green-800'
             }`}>
             {campaign.badges.type}
           </span>

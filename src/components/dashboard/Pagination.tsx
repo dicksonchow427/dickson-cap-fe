@@ -57,14 +57,14 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1 || isLoading}
-          className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="relative inline-flex items-center px-4 py-2.5 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
         >
           Previous
         </button>
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages || isLoading}
-          className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="ml-3 relative inline-flex items-center px-4 py-2.5 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
         >
           Next
         </button>
@@ -82,7 +82,7 @@ const Pagination: React.FC<PaginationProps> = ({
             <button
               onClick={() => onPageChange(currentPage - 1)}
               disabled={currentPage === 1 || isLoading}
-              className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-base font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-base font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
             >
               <span className="sr-only">Previous</span>
               <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -100,8 +100,8 @@ const Pagination: React.FC<PaginationProps> = ({
                   <button
                     onClick={() => onPageChange(page as number)}
                     disabled={isLoading}
-                    className={`relative inline-flex items-center px-4 py-2 border text-base font-medium ${currentPage === page
-                        ? 'z-10 bg-[#13426B] border-[#13426B] text-white'
+                    className={`relative inline-flex items-center px-4 py-2 border text-base font-medium min-h-[44px] ${currentPage === page
+                        ? 'z-10 bg-primary-background border-primary-background text-white'
                         : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
                       } disabled:opacity-50 disabled:cursor-not-allowed`}
                   >
@@ -114,7 +114,7 @@ const Pagination: React.FC<PaginationProps> = ({
             <button
               onClick={() => onPageChange(currentPage + 1)}
               disabled={currentPage === totalPages || isLoading}
-              className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-base font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-base font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
             >
               <span className="sr-only">Next</span>
               <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

@@ -9,7 +9,7 @@
     "status": "Active",
     "badges": {
       "id": "badges_000001",
-      "name": "Analytical Thinking",
+      "name": "Integrity",
       "type": "Values",
       "photo": "integrity_badges.png"
     }
@@ -24,7 +24,7 @@
     "status": "Active",
     "badges": {
       "id": "badges_000002",
-      "name": "Teamwork",
+      "name": "Diversity",
       "type": "Values",
       "photo": "diversity_badges.png"
     }
@@ -39,7 +39,7 @@
     "status": "Active",
     "badges": {
       "id": "badges_000003",
-      "name": "Intellectual Curiosity",
+      "name": "Excellence",
       "type": "Values",
       "photo": "excellence_badges.png"
     }
@@ -54,7 +54,7 @@
     "status": "Active",
     "badges": {
       "id": "badges_000004",
-      "name": "Effective Communication",
+      "name": "Collaboration",
       "type": "Values",
       "photo": "collaboration_badges.png"
     }
@@ -69,7 +69,7 @@
     "status": "Active",
     "badges": {
       "id": "badges_000005",
-      "name": "Resilience",
+      "name": "Engagement",
       "type": "Values",
       "photo": "engagement_badges.png"
     }
@@ -78,15 +78,15 @@
     "name": "Green Week",
     "id": "campaign202502",
     "host": "Department B",
-    "message": "Celebrate sustainability with us during Green Week! This week is all about raising environmental awareness and inspiring eco-friendly habits through interactive workshops, green challenges, and community initiatives. Let’s come together to make a positive impact—one action at a time.",
+    "message": "Celebrate wellness with us! This campaign is all about promoting health, well-being, and work-life balance through interactive workshops, wellness challenges, and community initiatives. Let's come together to prioritize our physical and mental health—one step at a time.",
     "datetime": "2025-10-06 09:00:00",
     "cover": "green_week.jpg",
     "status": "Active",
     "badges": {
       "id": "badges_202502",
-      "name": "Risk Awareness",
+      "name": "Wellness",
       "type": "Campaign",
-      "photo": "green_week_badges.png"
+      "photo": "wellness_badges.png"
     }
   }
 ]

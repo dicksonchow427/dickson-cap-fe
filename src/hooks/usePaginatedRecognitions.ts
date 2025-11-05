@@ -141,26 +141,26 @@ export const usePaginatedRecognitions = (
     }
 
     try {
-      // Load users to get department information
+      // Load users to get division information
       const response = await fetch('/data/users.json');
       const users = await response.json();
 
-      // Create a map of user ID to department
-      const userDepartmentMap = new Map();
+      // Create a map of user ID to division
+      const userDivisionMap = new Map();
       users.forEach((user: { id: string; department_division: string }) => {
-        userDepartmentMap.set(user.id, user.department_division);
+        userDivisionMap.set(user.id, user.department_division);
       });
 
-      // Filter recognitions by department
+      // Filter recognitions by division
       return recognitions.filter(recognition => {
-        const giverDepartment = userDepartmentMap.get(recognition.giverId);
-        const receiverDepartment = userDepartmentMap.get(recognition.receiverId);
+        const giverDivision = userDivisionMap.get(recognition.giverId);
+        const receiverDivision = userDivisionMap.get(recognition.receiverId);
 
-        // Include recognition if either giver or receiver is in the selected department
-        return giverDepartment === department || receiverDepartment === department;
+        // Include recognition if either giver or receiver is in the selected division
+        return giverDivision === department || receiverDivision === department;
       });
     } catch (error) {
-      console.error('Error filtering recognitions by department:', error);
+      console.error('Error filtering recognitions by division:', error);
       return recognitions; // Return all recognitions if filtering fails
     }
   }, [recognitions]);
@@ -180,12 +180,12 @@ export const usePaginatedRecognitions = (
 
   const getDistributionData = useCallback(async () => {
     try {
-      return await recognitionService.getBadgeDistributionData();
+      return await recognitionService.getBadgeReceivedData(currentUserId);
     } catch (err) {
       console.error('Error generating distribution data:', err);
       return [];
     }
-  }, []);
+  }, [currentUserId]);
 
   // Get available badges for recognition creation
   const getAvailableBadges = useCallback(async () => {
@@ -194,12 +194,12 @@ export const usePaginatedRecognitions = (
     } catch (err) {
       console.error('Error fetching available badges:', err);
       return [
-        { id: 'badges_000001', name: 'Analytical Thinking', type: 'Values' as const },
-        { id: 'badges_000002', name: 'Teamwork', type: 'Values' as const },
-        { id: 'badges_000003', name: 'Intellectual Curiosity', type: 'Values' as const },
-        { id: 'badges_000004', name: 'Effective Communication', type: 'Values' as const },
-        { id: 'badges_000005', name: 'Resilience', type: 'Values' as const },
-        { id: 'badges_202502', name: 'Risk Awareness', type: 'Campaign' as const }
+        { id: 'badges_000001', name: 'Integrity', type: 'Values' as const },
+        { id: 'badges_000002', name: 'Diversity', type: 'Values' as const },
+        { id: 'badges_000003', name: 'Excellence', type: 'Values' as const },
+        { id: 'badges_000004', name: 'Collaboration', type: 'Values' as const },
+        { id: 'badges_000005', name: 'Engagement', type: 'Values' as const },
+        { id: 'badges_202502', name: 'Wellness', type: 'Campaign' as const }
       ];
     }
   }, []);

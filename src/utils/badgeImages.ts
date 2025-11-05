@@ -9,29 +9,29 @@ export interface BadgeImageInfo {
 // Mapping of badge names to their image files
 // Badge names now match the actual image file names
 const badgeImageMap: Record<string, BadgeImageInfo> = {
-  'Analytical Thinking': {
-    imagePath: '/images/badges/Analytical Thinking.png',
-    altText: 'Analytical Thinking Badge'
+  'Integrity': {
+    imagePath: '/images/badges/Integrity.png',
+    altText: 'Integrity Badge'
   },
-  'Teamwork': {
-    imagePath: '/images/badges/Teamwork.png',
-    altText: 'Teamwork Badge'
+  'Diversity': {
+    imagePath: '/images/badges/Diversity.png',
+    altText: 'Diversity Badge'
   },
-  'Intellectual Curiosity': {
-    imagePath: '/images/badges/Intellectual Curiosity.png',
-    altText: 'Intellectual Curiosity Badge'
+  'Excellence': {
+    imagePath: '/images/badges/Excellence.png',
+    altText: 'Excellence Badge'
   },
-  'Effective Communication': {
-    imagePath: '/images/badges/Effective Communication.png',
-    altText: 'Effective Communication Badge'
+  'Collaboration': {
+    imagePath: '/images/badges/Collaboration.png',
+    altText: 'Collaboration Badge'
   },
-  'Resilience': {
-    imagePath: '/images/badges/Resilience.png',
-    altText: 'Resilience Badge'
+  'Engagement': {
+    imagePath: '/images/badges/Engagement.png',
+    altText: 'Engagement Badge'
   },
-  'Risk Awareness': {
-    imagePath: '/images/badges/Risk Awareness.png',
-    altText: 'Risk Awareness Badge'
+  'Wellness': {
+    imagePath: '/images/badges/Wellness.png',
+    altText: 'Wellness Badge'
   }
 };
 
@@ -46,7 +46,7 @@ export const getBadgeImage = (badgeName: string): BadgeImageInfo => {
   if (!badgeInfo) {
     // Fallback for unknown badges
     return {
-      imagePath: '/images/badges/Teamwork.png', // Default fallback image
+      imagePath: '/images/badges/Wellness.png', // Default fallback image
       altText: `${badgeName} Badge`
     };
   }

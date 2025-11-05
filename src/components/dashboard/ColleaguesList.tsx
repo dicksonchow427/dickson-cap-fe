@@ -5,14 +5,11 @@ interface ColleaguesListProps {
   colleagues: Colleague[];
   // eslint-disable-next-line no-unused-vars
   onRecognizeColleague: (id: string) => void;
-  // eslint-disable-next-line no-unused-vars
-  onFilterByBadge?: (name: string) => void;
 }
 
 const ColleaguesList: React.FC<ColleaguesListProps> = ({
   colleagues,
-  onRecognizeColleague,
-  onFilterByBadge
+  onRecognizeColleague
 }) => {
   const [showAll, setShowAll] = useState(false);
   const initialLimit = 5;
@@ -27,9 +24,8 @@ const ColleaguesList: React.FC<ColleaguesListProps> = ({
           {displayedColleagues.map((colleague) => (
             <div key={colleague.id} id={`colleague-item-${colleague.id}`} className="flex items-center justify-between" data-testid={`colleague-list-item-${colleague.id}`}>
               <div id={`colleague-info-${colleague.id}`} className="flex items-center space-x-3" data-testid={`colleague-info-section-${colleague.id}`}>
-                <button
-                  onClick={() => onFilterByBadge?.(colleague.name)}
-                  className="w-12 h-12 rounded-full object-cover hover:opacity-80 transition-opacity cursor-pointer"
+                <div
+                  className="w-12 h-12 rounded-full object-cover"
                   data-testid={`colleague-avatar-button-${colleague.id}`}
                 >
                   <img
@@ -39,21 +35,20 @@ const ColleaguesList: React.FC<ColleaguesListProps> = ({
                     className="w-12 h-12 rounded-full object-cover"
                     data-testid={`colleague-avatar-image-${colleague.id}`}
                   />
-                </button>
+                </div>
                 <div id={`colleague-details-${colleague.id}`} data-testid={`colleague-details-wrapper-${colleague.id}`}>
-                  <button
-                    onClick={() => onFilterByBadge?.(colleague.name)}
-                    className="text-base font-medium text-gray-900 hover:text-[#13426B] hover:underline transition-colors cursor-pointer"
+                  <p
+                    className="text-base font-medium text-gray-900"
                     data-testid={`colleague-name-button-${colleague.id}`}
                   >
-                    <p id={`colleague-name-${colleague.id}`} data-testid={`colleague-name-text-${colleague.id}`}>{colleague.name}</p>
-                  </button>
+                    <span id={`colleague-name-${colleague.id}`} data-testid={`colleague-name-text-${colleague.id}`}>{colleague.name}</span>
+                  </p>
                 </div>
               </div>
               <button
                 id={`recognize-colleague-button-${colleague.id}`}
                 onClick={() => onRecognizeColleague(colleague.id)}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="p-3 hover:bg-gray-100 rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
                 data-testid={`recognize-colleague-button-${colleague.id}`}
               >
                 <img
@@ -73,7 +68,7 @@ const ColleaguesList: React.FC<ColleaguesListProps> = ({
             <button
               id="colleagues-show-more-button"
               onClick={() => setShowAll(!showAll)}
-              className="text-base text-[#13426B] hover:underline"
+              className="text-base text-primary-background hover:underline py-2 px-2 -mx-2 min-h-[44px]"
               data-testid="colleagues-show-more-button"
             >
               {showAll ? 'Show Less' : 'Show More'}
