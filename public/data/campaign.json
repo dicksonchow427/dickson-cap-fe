@@ -6,7 +6,7 @@
     "message": "Recognize colleagues who demonstrate unwavering honesty, ethical behavior, and strong moral principles in everything they do. Integrity is the foundation of trust in our workplace.",
     "datetime": "2025-10-31 00:00:00",
     "cover": "integrity.jpg",
-    "status": "Active",
+    "status": "Inactive",
     "badges": {
       "id": "badges_000001",
       "name": "Integrity",
@@ -21,7 +21,7 @@
     "message": "Celebrate the power of diverse perspectives, backgrounds, and experiences. Recognize those who champion inclusivity and create an environment where everyone feels valued and can thrive.",
     "datetime": "2025-10-31 00:00:00",
     "cover": "diversity.jpg",
-    "status": "Active",
+    "status": "Inactive",
     "badges": {
       "id": "badges_000002",
       "name": "Diversity",
@@ -36,7 +36,7 @@
     "message": "Honor those who consistently go above and beyond, setting high standards and delivering outstanding results. Excellence is about striving for continuous improvement and inspiring others.",
     "datetime": "2025-10-31 00:00:00",
     "cover": "excellence.jpg",
-    "status": "Active",
+    "status": "Inactive",
     "badges": {
       "id": "badges_000003",
       "name": "Excellence",
@@ -51,7 +51,7 @@
     "message": "Appreciate team members who excel at working together, fostering open communication, and building strong partnerships that drive collective success.",
     "datetime": "2025-10-31 00:00:00",
     "cover": "collaboration.jpg",
-    "status": "Active",
+    "status": "Inactive",
     "badges": {
       "id": "badges_000004",
       "name": "Collaboration",
@@ -66,7 +66,7 @@
     "message": "Recognize colleagues who show exceptional commitment, enthusiasm, and active participation in their work and team initiatives. Their engagement inspires and energizes everyone around them.",
     "datetime": "2025-10-01 09:00:00",
     "cover": "engagement.jpg",
-    "status": "Active",
+    "status": "Inactive",
     "badges": {
       "id": "badges_000005",
       "name": "Engagement",

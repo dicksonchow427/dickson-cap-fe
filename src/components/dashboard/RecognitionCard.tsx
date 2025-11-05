@@ -9,6 +9,7 @@ interface RecognitionCardProps {
   // eslint-disable-next-line no-unused-vars
   onRecognize?: (id: string) => void;
   showActions?: boolean;
+  currentUserId?: string;
   campaignContext?: {
     name: string;
     host: string;
@@ -21,6 +22,7 @@ const RecognitionCard: React.FC<RecognitionCardProps> = ({
   onLike,
   onRecognize,
   showActions = true,
+  currentUserId,
   campaignContext
 }) => {
   const [isLiking, setIsLiking] = useState(false);
@@ -88,10 +90,6 @@ const RecognitionCard: React.FC<RecognitionCardProps> = ({
               src={badgeImageInfo.imagePath}
               alt={badgeImageInfo.altText}
               className="w-20 h-20 object-contain"
-              onError={(e) => {
-                // Fallback to a default image if the badge image fails to load
-                e.currentTarget.src = '/images/badges/Wellness.png';
-              }}
             />
           </div>
           <div className="h-20 flex items-center">
@@ -198,22 +196,24 @@ const RecognitionCard: React.FC<RecognitionCardProps> = ({
               <span id={`recognition-like-text-${recognition.id}`} className="text-base" data-testid={`recognition-like-button-text-${recognition.id}`}>{recognition.isLiked ? 'Liked' : 'Like'}</span>
             </button>
 
-            <button
-              id={`recognition-recognize-too-button-${recognition.id}`}
-              type="button"
-              className="flex items-center space-x-2 px-3 py-3 rounded-md text-gray-600 hover:bg-gray-50 transition-colors min-h-[44px]"
-              data-testid={`recognition-recognize-too-button-${recognition.id}`}
-              onClick={handleRecognize}
-            >
-              <img
-                id={`recognition-recognize-too-icon-${recognition.id}`}
-                src="/images/img_group_blue_gray_600.svg"
-                alt="Recognize"
-                className="w-4 h-4"
-                data-testid={`recognition-recognize-too-icon-image-${recognition.id}`}
-              />
-              <span id={`recognition-recognize-too-text-${recognition.id}`} className="text-base" data-testid={`recognition-recognize-too-text-label-${recognition.id}`}>Recognise {recognition.receiver?.split(' ')[0] || recognition.receiver} too</span>
-            </button>
+            {recognition.receiverId !== currentUserId && (
+              <button
+                id={`recognition-recognize-too-button-${recognition.id}`}
+                type="button"
+                className="flex items-center space-x-2 px-3 py-3 rounded-md text-gray-600 hover:bg-gray-50 transition-colors min-h-[44px]"
+                data-testid={`recognition-recognize-too-button-${recognition.id}`}
+                onClick={handleRecognize}
+              >
+                <img
+                  id={`recognition-recognize-too-icon-${recognition.id}`}
+                  src="/images/img_group_blue_gray_600.svg"
+                  alt="Recognize"
+                  className="w-4 h-4"
+                  data-testid={`recognition-recognize-too-icon-image-${recognition.id}`}
+                />
+                <span id={`recognition-recognize-too-text-${recognition.id}`} className="text-base" data-testid={`recognition-recognize-too-text-label-${recognition.id}`}>Recognise {recognition.receiver?.split(' ')[0] || recognition.receiver} too</span>
+              </button>
+            )}
           </div>
         )}
       </div>

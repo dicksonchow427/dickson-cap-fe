@@ -1,4 +1,4 @@
-# Backend Setup for Recognition System
+# Backend Setup for Recognition Platform
 
 This document explains how to set up and run the backend API that handles saving recognition data to JSON files.
 

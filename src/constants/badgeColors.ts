@@ -15,6 +15,26 @@ export const CHART_COLORS = [
 // Legacy GRADIENT_COLORS for backward compatibility
 const GRADIENT_COLORS = CHART_COLORS;
 
+// Direct mapping of badge names to their specific colors
+// These colors should match the border colors of the badge images
+export const BADGE_COLOR_MAP: Record<string, string> = {
+  'Collaboration': '#26CAD3',
+  'Diversity': '#EE6478',
+  'Engagement': '#FEDD00',
+  'Excellence': '#FFB81C',
+  'Integrity': '#00B480',
+  'Wellness': '#7AEC6B'
+};
+
+/**
+ * Get badge color from the direct color map
+ * @param badgeName - The name of the badge
+ * @returns The color string for the badge, or a default color if not found
+ */
+export const getBadgeColor = (badgeName: string): string => {
+  return BADGE_COLOR_MAP[badgeName] || CHART_COLORS[0];
+};
+
 // Centralized function to get color for any badge name (alphabetical order)
 export const getBadgeColorAlphabetical = (badgeName: string): string => {
   // Get all possible badge names in alphabetical order
@@ -26,10 +46,10 @@ export const getBadgeColorAlphabetical = (badgeName: string): string => {
     'Integrity',
     'Wellness'
   ].sort((a, b) => a.localeCompare(b));
-  
+
   // Find the index of this badge name in the alphabetical list
   const index = allBadgeNames.indexOf(badgeName);
-  
+
   // Return the color based on alphabetical position
   return index >= 0 ? GRADIENT_COLORS[index % GRADIENT_COLORS.length] : GRADIENT_COLORS[0];
 };

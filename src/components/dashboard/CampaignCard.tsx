@@ -26,9 +26,9 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
 
 
   return (
-    <article id={`campaign-card-${campaign.id}`} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden" data-testid={`campaign-card-${campaign.id}`}>
+    <article id={`campaign-card-${campaign.id}`} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden px-6 pt-2 pb-3" data-testid={`campaign-card-${campaign.id}`}>
       {/* Campaign Header - Corporate Communications Style */}
-      <div className="p-4 border-b border-gray-100">
+      <div className="py-4 border-b border-gray-100">
         <div className="flex items-center">
           <div className="flex items-center space-x-3">
             {/* Corporate Communications Avatar */}
@@ -36,8 +36,8 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
               <span className="text-white text-lg font-bold">CC</span>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900">{campaign.host}</h3>
-              <p className="text-lg text-gray-500">{formatDateTime(campaign.datetime)}</p>
+              <p className="text-md font-semibold text-gray-900">{campaign.host}</p>
+              <p className="text-sm text-gray-500">{formatDateTime(campaign.datetime)}</p>
             </div>
           </div>
         </div>
@@ -59,46 +59,39 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
       )}
 
       {/* Campaign Content */}
-      <div className="p-4">
+      <div className="py-4">
         {/* Campaign Title */}
         <h2 className="text-lg font-bold text-primary-background mb-3">{campaign.name}</h2>
 
         {/* Campaign Message */}
-        <div className="mb-2">
-          <p className="text-gray-700 text-lg leading-relaxed">
+        <div className="mb-3">
+          <p className="text-gray-700 text-sm leading-relaxed">
             {campaign.message}
           </p>
         </div>
 
         {/* Badge Information */}
-        <div className="mb-2 p-1 bg-gray-50 rounded-lg">
+        <div className="mb-2 py-2 bg-gray-50 rounded-lg">
           <div className="flex items-center space-x-2">
             <div
-              className="w-16 h-16 rounded-full flex items-center justify-center bg-white border-2 border-gray-200"
+              className="w-16 h-16 rounded-full flex items-center justify-center"
             >
               <img
                 src={badgeImageInfo.imagePath}
                 alt={badgeImageInfo.altText}
                 className="w-12 h-12 object-contain"
-                onError={(e) => {
-                  // Fallback to a default image if the badge image fails to load
-                  e.currentTarget.src = '/images/badges/Wellness.png';
-                }}
               />
             </div>
             <div>
-              <p className="font-medium text-gray-800 text-sm">{campaign.badges.name} Badge</p>
+              <p className="font-medium text-gray-800 text-base">{campaign.badges.name} Badge</p>
             </div>
           </div>
         </div>
 
         {/* Campaign Stats */}
-        <div className="mb-2 flex items-center justify-between text-lg text-gray-600">
+        <div className="flex items-center justify-start text-base text-gray-600 mt-3">
           <span>{participantCount} participants</span>
-          <span className={`px-2 py-1 rounded text-base ${campaign.badges.type === 'Values' ? 'bg-primary-background/10 text-primary-background' : 'bg-green-100 text-green-800'
-            }`}>
-            {campaign.badges.type}
-          </span>
+
         </div>
 
       </div>

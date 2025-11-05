@@ -1,8 +1,8 @@
-# 🏆 Colleague Recognition System
+# 🏆 Colleague Appreciation Platform
 
 A modern, interactive colleague recognition platform built with React, TypeScript, and Tailwind CSS. This application enables organizations to foster a culture of appreciation by allowing employees to recognize and celebrate each other's contributions.
 
-![Colleague Recognition System](https://img.shields.io/badge/React-18.2.0-blue.svg)
+![Colleague Appreciation Platform](https://img.shields.io/badge/React-18.2.0-blue.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-blue.svg)
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4.6-blue.svg)
 ![Vite](https://img.shields.io/badge/Vite-5.0.0-purple.svg)

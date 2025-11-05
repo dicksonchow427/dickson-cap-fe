@@ -38,16 +38,18 @@ class UserService {
   async getColleagues(): Promise<Colleague[]> {
     const users = await this.loadUsers();
 
-    return users.map(user => {
-      const totalReceived = user.received_badges.reduce((sum, badge) => sum + badge.number, 0);
-      return {
-        id: user.id,
-        name: user.name,
-        title: `${totalReceived} Recognitions`,
-        recognitions: totalReceived,
-        avatar: `/images/${user.photo}`
-      };
-    }).sort((a, b) => b.recognitions - a.recognitions);
+    return users
+      .map(user => {
+        const totalReceived = user.received_badges.reduce((sum, badge) => sum + badge.number, 0);
+        return {
+          id: user.id,
+          name: user.name,
+          title: `${totalReceived} Recognitions`,
+          recognitions: totalReceived,
+          avatar: `/images/${user.photo}`,
+          department_division: user.department_division
+        };
+      });
   }
 
   // Get users by division

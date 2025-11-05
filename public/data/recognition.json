@@ -397,7 +397,7 @@
             "photo": "collaboration_badges.png"
         },
         "message": "Great teamwork on the latest project!",
-        "datetime": "2025-09-17 15:55:00"
+        "datetime": "2025-08-15 14:30:00"
     },
     {
         "id": "17",
@@ -687,7 +687,7 @@
             "photo": "wellness_badges.png"
         },
         "message": "Your wellness initiatives are making waves!",
-        "datetime": "2025-09-29 15:55:00"
+        "datetime": "2025-08-20 11:15:00"
     },
     {
         "id": "29",
@@ -861,6 +861,526 @@
             "photo": "excellence_badges.png"
         },
         "message": "Your pursuit of excellence raises the bar for all of us!",
-        "datetime": "2025-10-06 09:20:00"
+        "datetime": "2025-08-25 16:45:00"
+    },
+    {
+        "id": "36",
+        "giver": "Alice Leung",
+        "giverId": "20102",
+        "giverPhoto": "aliceleung.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20103"
+            },
+            {
+                "id": "20106"
+            },
+            {
+                "id": "20108"
+            },
+            {
+                "id": "20110"
+            }
+        ],
+        "badges": {
+            "id": "badges_000001",
+            "name": "Integrity",
+            "type": "Values",
+            "photo": "integrity_badges.png"
+        },
+        "message": "Your unwavering commitment to ethical standards is truly admirable!",
+        "datetime": "2025-09-01 09:30:00"
+    },
+    {
+        "id": "37",
+        "giver": "Brian Ng",
+        "giverId": "20103",
+        "giverPhoto": "brianng.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20102"
+            },
+            {
+                "id": "20107"
+            },
+            {
+                "id": "20109"
+            }
+        ],
+        "badges": {
+            "id": "badges_000002",
+            "name": "Diversity",
+            "type": "Values",
+            "photo": "diversity_badges.png"
+        },
+        "message": "Your inclusive leadership creates a welcoming environment for everyone!",
+        "datetime": "2025-09-05 14:20:00"
+    },
+    {
+        "id": "38",
+        "giver": "Carmen Yip",
+        "giverId": "20104",
+        "giverPhoto": "carmenyip.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20105"
+            },
+            {
+                "id": "20108"
+            },
+            {
+                "id": "20110"
+            },
+            {
+                "id": "20102"
+            }
+        ],
+        "badges": {
+            "id": "badges_000005",
+            "name": "Engagement",
+            "type": "Values",
+            "photo": "engagement_badges.png"
+        },
+        "message": "Your active participation and thoughtful contributions make our meetings more productive!",
+        "datetime": "2025-09-08 10:15:00"
+    },
+    {
+        "id": "39",
+        "giver": "Frank Liu",
+        "giverId": "20107",
+        "giverPhoto": "frankliu.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20103"
+            },
+            {
+                "id": "20106"
+            },
+            {
+                "id": "20109"
+            }
+        ],
+        "badges": {
+            "id": "badges_000001",
+            "name": "Integrity",
+            "type": "Values",
+            "photo": "integrity_badges.png"
+        },
+        "message": "Your transparent communication and honest feedback builds trust in our team!",
+        "datetime": "2025-09-12 13:40:00"
+    },
+    {
+        "id": "40",
+        "giver": "Grace Chen",
+        "giverId": "20108",
+        "giverPhoto": "gracechen.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20102"
+            },
+            {
+                "id": "20104"
+            },
+            {
+                "id": "20107"
+            }
+        ],
+        "badges": {
+            "id": "badges_000004",
+            "name": "Collaboration",
+            "type": "Values",
+            "photo": "collaboration_badges.png"
+        },
+        "message": "Your collaborative approach makes working together a pleasure!",
+        "datetime": "2025-09-15 11:50:00"
+    },
+    {
+        "id": "41",
+        "giver": "Henry Zhang",
+        "giverId": "20109",
+        "giverPhoto": "henryzhang.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20105"
+            },
+            {
+                "id": "20107"
+            },
+            {
+                "id": "20110"
+            },
+            {
+                "id": "20103"
+            }
+        ],
+        "badges": {
+            "id": "badges_000003",
+            "name": "Excellence",
+            "type": "Values",
+            "photo": "excellence_badges.png"
+        },
+        "message": "Your commitment to delivering high-quality work is inspiring!",
+        "datetime": "2025-09-18 15:20:00"
+    },
+    {
+        "id": "42",
+        "giver": "Iris Tam",
+        "giverId": "20110",
+        "giverPhoto": "iristam.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Green Week",
+        "likes": [
+            {
+                "id": "20106"
+            },
+            {
+                "id": "20102"
+            },
+            {
+                "id": "20108"
+            }
+        ],
+        "badges": {
+            "id": "badges_202502",
+            "name": "Wellness",
+            "type": "Campaign",
+            "photo": "wellness_badges.png"
+        },
+        "message": "Your dedication to team wellness creates a positive work environment!",
+        "datetime": "2025-09-22 09:10:00"
+    },
+    {
+        "id": "43",
+        "giver": "Emily Wong",
+        "giverId": "20106",
+        "giverPhoto": "emilywong.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20109"
+            },
+            {
+                "id": "20104"
+            },
+            {
+                "id": "20107"
+            }
+        ],
+        "badges": {
+            "id": "badges_000002",
+            "name": "Diversity",
+            "type": "Values",
+            "photo": "diversity_badges.png"
+        },
+        "message": "Thank you for championing diversity and inclusion in our workplace!",
+        "datetime": "2025-09-25 14:30:00"
+    },
+    {
+        "id": "44",
+        "giver": "Daniel Ho",
+        "giverId": "20105",
+        "giverPhoto": "danielho.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20108"
+            },
+            {
+                "id": "20102"
+            },
+            {
+                "id": "20110"
+            },
+            {
+                "id": "20106"
+            }
+        ],
+        "badges": {
+            "id": "badges_000005",
+            "name": "Engagement",
+            "type": "Values",
+            "photo": "engagement_badges.png"
+        },
+        "message": "Your enthusiastic engagement in team activities is contagious!",
+        "datetime": "2025-09-28 16:00:00"
+    },
+    {
+        "id": "45",
+        "giver": "Alice Leung",
+        "giverId": "20102",
+        "giverPhoto": "aliceleung.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20103"
+            },
+            {
+                "id": "20106"
+            },
+            {
+                "id": "20108"
+            }
+        ],
+        "badges": {
+            "id": "badges_000003",
+            "name": "Excellence",
+            "type": "Values",
+            "photo": "excellence_badges.png"
+        },
+        "message": "Your exceptional work quality continues to impress everyone!",
+        "datetime": "2025-10-02 10:15:00"
+    },
+    {
+        "id": "46",
+        "giver": "Brian Ng",
+        "giverId": "20103",
+        "giverPhoto": "brianng.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20107"
+            },
+            {
+                "id": "20109"
+            },
+            {
+                "id": "20110"
+            },
+            {
+                "id": "20102"
+            }
+        ],
+        "badges": {
+            "id": "badges_000003",
+            "name": "Excellence",
+            "type": "Values",
+            "photo": "excellence_badges.png"
+        },
+        "message": "Your commitment to excellence in every project is truly remarkable!",
+        "datetime": "2025-08-12 13:25:00"
+    },
+    {
+        "id": "47",
+        "giver": "Grace Chen",
+        "giverId": "20108",
+        "giverPhoto": "gracechen.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20104"
+            },
+            {
+                "id": "20105"
+            },
+            {
+                "id": "20106"
+            }
+        ],
+        "badges": {
+            "id": "badges_000003",
+            "name": "Excellence",
+            "type": "Values",
+            "photo": "excellence_badges.png"
+        },
+        "message": "Your pursuit of excellence sets a high standard for the entire team!",
+        "datetime": "2025-08-18 15:30:00"
+    },
+    {
+        "id": "48",
+        "giver": "Frank Liu",
+        "giverId": "20107",
+        "giverPhoto": "frankliu.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20103"
+            },
+            {
+                "id": "20108"
+            },
+            {
+                "id": "20109"
+            },
+            {
+                "id": "20110"
+            }
+        ],
+        "badges": {
+            "id": "badges_000002",
+            "name": "Diversity",
+            "type": "Values",
+            "photo": "diversity_badges.png"
+        },
+        "message": "Your inclusive leadership style creates a welcoming environment for all!",
+        "datetime": "2025-08-22 11:40:00"
+    },
+    {
+        "id": "49",
+        "giver": "Henry Zhang",
+        "giverId": "20109",
+        "giverPhoto": "henryzhang.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20102"
+            },
+            {
+                "id": "20105"
+            },
+            {
+                "id": "20107"
+            }
+        ],
+        "badges": {
+            "id": "badges_000002",
+            "name": "Diversity",
+            "type": "Values",
+            "photo": "diversity_badges.png"
+        },
+        "message": "Thank you for championing diversity and ensuring all voices are heard!",
+        "datetime": "2025-08-28 14:15:00"
+    },
+    {
+        "id": "50",
+        "giver": "Iris Tam",
+        "giverId": "20110",
+        "giverPhoto": "iristam.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20104"
+            },
+            {
+                "id": "20106"
+            },
+            {
+                "id": "20108"
+            },
+            {
+                "id": "20102"
+            },
+            {
+                "id": "20103"
+            }
+        ],
+        "badges": {
+            "id": "badges_000002",
+            "name": "Diversity",
+            "type": "Values",
+            "photo": "diversity_badges.png"
+        },
+        "message": "Your efforts to promote diversity and inclusion make our team stronger!",
+        "datetime": "2025-09-03 10:50:00"
+    },
+    {
+        "id": "51",
+        "giver": "Emily Wong",
+        "giverId": "20106",
+        "giverPhoto": "emilywong.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Values",
+        "likes": [
+            {
+                "id": "20109"
+            },
+            {
+                "id": "20107"
+            },
+            {
+                "id": "20110"
+            }
+        ],
+        "badges": {
+            "id": "badges_000005",
+            "name": "Engagement",
+            "type": "Values",
+            "photo": "engagement_badges.png"
+        },
+        "message": "Your active participation and thoughtful insights enhance every discussion!",
+        "datetime": "2025-10-05 11:20:00"
+    },
+    {
+        "id": "52",
+        "giver": "Daniel Ho",
+        "giverId": "20105",
+        "giverPhoto": "danielho.png",
+        "receiver": "Peter Chan",
+        "receiverId": "20101",
+        "receiverPhoto": "peterchan.png",
+        "campaign": "Green Week",
+        "likes": [
+            {
+                "id": "20108"
+            },
+            {
+                "id": "20102"
+            },
+            {
+                "id": "20104"
+            },
+            {
+                "id": "20106"
+            }
+        ],
+        "badges": {
+            "id": "badges_202502",
+            "name": "Wellness",
+            "type": "Campaign",
+            "photo": "wellness_badges.png"
+        },
+        "message": "Your dedication to wellness initiatives creates a healthier workplace!",
+        "datetime": "2025-10-01 09:00:00"
     }
 ]

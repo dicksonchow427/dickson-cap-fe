@@ -36,12 +36,18 @@ const ColleaguesList: React.FC<ColleaguesListProps> = ({
                     data-testid={`colleague-avatar-image-${colleague.id}`}
                   />
                 </div>
-                <div id={`colleague-details-${colleague.id}`} data-testid={`colleague-details-wrapper-${colleague.id}`}>
+                <div id={`colleague-details-${colleague.id}`} className="flex flex-col" data-testid={`colleague-details-wrapper-${colleague.id}`}>
                   <p
                     className="text-base font-medium text-gray-900"
                     data-testid={`colleague-name-button-${colleague.id}`}
                   >
                     <span id={`colleague-name-${colleague.id}`} data-testid={`colleague-name-text-${colleague.id}`}>{colleague.name}</span>
+                  </p>
+                  <p
+                    className="text-sm text-gray-500"
+                    data-testid={`colleague-division-wrapper-${colleague.id}`}
+                  >
+                    <span id={`colleague-division-${colleague.id}`} data-testid={`colleague-division-text-${colleague.id}`}>{colleague.department_division}</span>
                   </p>
                 </div>
               </div>

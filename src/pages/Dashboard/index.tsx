@@ -7,7 +7,7 @@ import { useUsers } from '../../hooks/useUsers';
 import { usePaginatedRecognitions } from '../../hooks/usePaginatedRecognitions';
 import { useRecognitionActions } from '../../hooks/useRecognitionActions';
 import { useCampaigns } from '../../hooks/useCampaigns';
-import { CHART_COLORS } from '../../constants/badgeColors';
+import { CHART_COLORS, getBadgeColor } from '../../constants/badgeColors';
 import HeroSection from '../../components/dashboard/HeroSection';
 
 // Import components
@@ -39,7 +39,7 @@ const Dashboard = () => {
   // Use the custom users hook
   const {
     users,
-    colleagues,
+    otherColleagues,
     currentUser,
     loading: usersLoading,
     error: usersError,
@@ -80,6 +80,7 @@ const Dashboard = () => {
   // Use campaigns hook
   const {
     campaigns,
+    activeCampaigns,
     loading: campaignsLoading,
     error: campaignsError,
     getCampaignDistributionData
@@ -138,19 +139,18 @@ const Dashboard = () => {
       try {
         const badges = await getAvailableBadges();
 
-        // Create a map from recognitionDistributionData for badge counts and colors
+        // Create a map from recognitionDistributionData for badge counts only
         const badgeCountMap = new Map();
-        const badgeColorMap = new Map();
         recognitionDistributionData.forEach(badge => {
           badgeCountMap.set(badge.name, badge.value);
-          badgeColorMap.set(badge.name, badge.color);
         });
 
-        // Merge available badges with counts and colors from recognitions (or 0 if not found)
+        // Merge available badges with counts from recognitions (or 0 if not found)
+        // Use getBadgeColor to get consistent colors from the badge color map
         const mergedBadges = badges.map(badge => ({
           ...badge,
           number: badgeCountMap.get(badge.name) || 0,
-          color: badgeColorMap.get(badge.name) || '#13426B'
+          color: getBadgeColor(badge.name)
         }));
 
         setAllUserBadges(mergedBadges);
@@ -285,14 +285,14 @@ const Dashboard = () => {
     );
   }
 
-  const HelmetAny = Helmet as any; // Workaround for Helmet type issues
+  const Helmetany = Helmet as any; // Temporary workaround for Helmet type issues
 
   return (
     <>
-      <HelmetAny>
+      <Helmetany>
         <title>Colleague Appreciation Platform</title>
         <meta name="description" content="Employee recognition platform with real-time appreciation feeds and team analytics" />
-      </HelmetAny>
+      </Helmetany>
 
       <main id="dashboard-main" className="min-h-screen bg-gray-50" data-testid="dashboard-page">
         {/* Hero Section */}
@@ -312,7 +312,7 @@ const Dashboard = () => {
               />
 
               <ColleaguesList
-                colleagues={colleagues}
+                colleagues={otherColleagues}
                 onRecognizeColleague={handleRecognize}
               />
             </aside>
@@ -374,8 +374,8 @@ const Dashboard = () => {
               {activeTab === 'campaign' && (
                 <div id="campaign-feed-container" className="space-y-6" data-testid="campaign-feed-list">
                   {/* Campaign Cards */}
-                  {campaigns.length > 0 ? (
-                    campaigns.map((campaign) => (
+                  {activeCampaigns.length > 0 ? (
+                    activeCampaigns.map((campaign) => (
                       <CampaignCard
                         key={campaign.id}
                         campaign={campaign}
@@ -393,10 +393,10 @@ const Dashboard = () => {
                   {campaigns.length > 0 && (
                     <>
                       {/* Section Divider */}
-                      <div className="flex items-center my-8">
+                      <div className="flex items-center py-6">
                         <div className="flex-1 border-t border-gray-200"></div>
                         <div className="px-4">
-                          <span className="text-base text-gray-500 font-medium">New Wellness Recognitions</span>
+                          <span className="text-base text-gray-500 font-medium">New Campaign Recognitions</span>
                         </div>
                         <div className="flex-1 border-t border-gray-200"></div>
                       </div>
@@ -417,6 +417,7 @@ const Dashboard = () => {
                               recognition={recognition}
                               onLike={handleLike}
                               onRecognize={handleRecognize}
+                              currentUserId={currentUserId}
                               campaignContext={undefined} // Would be populated in real app
                             />
                           ))}
@@ -445,7 +446,6 @@ const Dashboard = () => {
                     <DistributionChart
                       data={campaignDistributionData}
                       title="Campaign Recognitions"
-                      badgeText="By Type"
                     />
                   )}
                 </>

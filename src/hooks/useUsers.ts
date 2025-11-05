@@ -5,6 +5,7 @@ import userService from '../services/userService';
 interface UseUsersReturn {
   users: User[];
   colleagues: Colleague[];
+  otherColleagues: Colleague[];
   currentUser: User | null;
   loading: boolean;
   error: string | null;
@@ -17,6 +18,7 @@ interface UseUsersReturn {
 export const useUsers = (currentUserId?: string): UseUsersReturn => {
   const [users, setUsers] = useState<User[]>([]);
   const [colleagues, setColleagues] = useState<Colleague[]>([]);
+  const [otherColleagues, setOtherColleagues] = useState<Colleague[]>([]);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -39,6 +41,13 @@ export const useUsers = (currentUserId?: string): UseUsersReturn => {
       if (currentUserId) {
         const user = await userService.getUserById(currentUserId);
         setCurrentUser(user);
+
+        // Filter out current user from colleagues
+        const filtered = colleaguesData.filter(colleague => colleague.id !== currentUserId);
+        setOtherColleagues(filtered);
+      } else {
+        // If no current user, all colleagues are "other colleagues"
+        setOtherColleagues(colleaguesData);
       }
 
     } catch (err) {
@@ -82,6 +91,14 @@ export const useUsers = (currentUserId?: string): UseUsersReturn => {
           // Refresh colleagues list
           const colleaguesData = await userService.getColleagues();
           setColleagues(colleaguesData);
+
+          // Update otherColleagues (filter out current user)
+          if (currentUserId) {
+            const filtered = colleaguesData.filter(colleague => colleague.id !== currentUserId);
+            setOtherColleagues(filtered);
+          } else {
+            setOtherColleagues(colleaguesData);
+          }
         }
       }
 
@@ -96,6 +113,7 @@ export const useUsers = (currentUserId?: string): UseUsersReturn => {
   return {
     users,
     colleagues,
+    otherColleagues,
     currentUser,
     loading,
     error,

@@ -18,7 +18,7 @@ const Header = ({ className }: HeaderProps) => {
 
             {/* Title */}
             <h1 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-[Open Sans] font-semibold leading-[20px] sm:leading-[24px] md:leading-[27px] lg:leading-[30px] text-primary-foreground uppercase">
-              Colleague RECOGNITION SYSTEM
+              Colleague Appreciation Platform
             </h1>
           </div>
 

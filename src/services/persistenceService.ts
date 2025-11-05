@@ -1,5 +1,8 @@
 class PersistenceService {
   private dataDir: string;
+  // Storage version for cache versioning
+  // Increment this when you need to invalidate old cached data
+  private readonly STORAGE_VERSION = 'v1';
 
   constructor() {
     // In a browser environment, we can't directly write to files
@@ -17,8 +20,8 @@ class PersistenceService {
         return false;
       }
 
-      // In browser environment, store in localStorage with a key
-      const storageKey = `persisted_${filename.replace('.json', '')}`;
+      // In browser environment, store in localStorage with a versioned key
+      const storageKey = `persisted_${filename.replace('.json', '')}_${this.STORAGE_VERSION}`;
       localStorage.setItem(storageKey, JSON.stringify(data));
 
       return true;
@@ -37,7 +40,7 @@ class PersistenceService {
     try {
       // Check if localStorage is available
       if (typeof Storage !== 'undefined' && localStorage) {
-        const storageKey = `persisted_${filename.replace('.json', '')}`;
+        const storageKey = `persisted_${filename.replace('.json', '')}_${this.STORAGE_VERSION}`;
         const persistedData = localStorage.getItem(storageKey);
 
         if (persistedData) {

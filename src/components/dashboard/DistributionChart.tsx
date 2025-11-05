@@ -76,7 +76,7 @@ const DistributionChart: React.FC<DistributionChartProps> = ({
               />
             </PieChart>
           </ResponsiveContainer>
-          
+
           {/* Center label showing total */}
           <div style={{
             position: 'absolute',
@@ -94,15 +94,15 @@ const DistributionChart: React.FC<DistributionChartProps> = ({
             </div>
           </div>
         </div>
-        
+
         {/* Legend Container - Separate from chart */}
         <div className="w-full mt-3 flex justify-center">
-          <div className="flex flex-col gap-y-2">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-2">
             {data.map((entry, index) => (
               <div key={index} className="flex items-center gap-2">
-                <span 
-                  className="w-3 h-3 rounded-full flex-shrink-0" 
-                  style={{ backgroundColor: entry.color }} 
+                <span
+                  className="w-3 h-3 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: entry.color }}
                 />
                 <span className="text-sm text-gray-600">
                   {entry.name} ({entry.value})

@@ -68,6 +68,7 @@ export interface Colleague {
   title: string;
   recognitions: number;
   avatar: string;
+  department_division: string;
 }
 
 export interface Badge {

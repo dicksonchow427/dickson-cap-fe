@@ -389,9 +389,6 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
                                 src={badgeImageInfo.imagePath}
                                 alt={badgeImageInfo.altText}
                                 className="w-8 h-8 object-contain"
-                                onError={(e) => {
-                                  e.currentTarget.src = '/images/badges/Wellness.png';
-                                }}
                               />
                             </div>
                             <div className="flex items-center justify-center">
@@ -447,9 +444,6 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
                                 src={badgeImageInfo.imagePath}
                                 alt={badgeImageInfo.altText}
                                 className="w-8 h-8 object-contain"
-                                onError={(e) => {
-                                  e.currentTarget.src = '/images/badges/Wellness.png';
-                                }}
                               />
                             </div>
                             <div className="flex items-center justify-center">
