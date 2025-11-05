@@ -285,12 +285,14 @@ const Dashboard = () => {
     );
   }
 
+  const HelmetAny = Helmet as any; // Workaround for Helmet type issues
+
   return (
     <>
-      <Helmet>
+      <HelmetAny>
         <title>Colleague Appreciation Platform</title>
         <meta name="description" content="Employee recognition platform with real-time appreciation feeds and team analytics" />
-      </Helmet>
+      </HelmetAny>
 
       <main id="dashboard-main" className="min-h-screen bg-gray-50" data-testid="dashboard-page">
         {/* Hero Section */}
