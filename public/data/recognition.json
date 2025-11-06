@@ -120,7 +120,7 @@
         "receiver": "Frank Liu",
         "receiverId": "20107",
         "receiverPhoto": "frankliu.png",
-        "campaign": "Dragon Boat",
+        "campaign": "Annual Dinner",
         "likes": [
             {
                 "id": "20108"
@@ -135,7 +135,7 @@
         "badges": {
             "id": "badges_000001",
             "name": "Integrity",
-            "type": "Dragon Boat",
+            "type": "Annual Dinner",
             "photo": "integrity_badges.png"
         },
         "message": "Your consistent honesty and ethical behavior sets a great example for the team.",
@@ -236,7 +236,7 @@
         "receiver": "Emily Wong",
         "receiverId": "20106",
         "receiverPhoto": "emilywong.png",
-        "campaign": "Dragon Boat",
+        "campaign": "Annual Dinner",
         "likes": [
             {
                 "id": "20108"
@@ -265,7 +265,7 @@
         "receiver": "Grace Chen",
         "receiverId": "20108",
         "receiverPhoto": "gracechen.png",
-        "campaign": "Dragon Boat",
+        "campaign": "Annual Dinner",
         "likes": [
             {
                 "id": "20104"

@@ -221,11 +221,30 @@ class RecognitionService {
         throw new Error('User not found');
       }
 
-      // Find badge data from campaigns
+      // Find badge data from campaigns or static badge list
       const campaigns = await campaignService.getAllCampaigns();
-      const badgeInfo = campaigns.find(c => c.badges.id === formData.badgeId);
+      let badgeData: { id: string; name: string; type: 'Values' | 'Campaign'; photo: string } | null = null;
 
-      if (!badgeInfo) {
+      const campaignBadge = campaigns.find(c => c.badges.id === formData.badgeId);
+      if (campaignBadge) {
+        badgeData = campaignBadge.badges;
+      } else {
+        // If not found in campaigns, check static badge list
+        const staticBadges = [
+          { id: 'badges_000001', name: 'Integrity', type: 'Values' as const, photo: 'integrity_badges.png' },
+          { id: 'badges_000002', name: 'Diversity', type: 'Values' as const, photo: 'diversity_badges.png' },
+          { id: 'badges_000003', name: 'Excellence', type: 'Values' as const, photo: 'excellence_badges.png' },
+          { id: 'badges_000004', name: 'Collaboration', type: 'Values' as const, photo: 'collaboration_badges.png' },
+          { id: 'badges_000005', name: 'Engagement', type: 'Values' as const, photo: 'engagement_badges.png' },
+          { id: 'badges_202502', name: 'Wellness', type: 'Campaign' as const, photo: 'wellness_badges.png' }
+        ];
+        const staticBadge = staticBadges.find(b => b.id === formData.badgeId);
+        if (staticBadge) {
+          badgeData = staticBadge;
+        }
+      }
+
+      if (!badgeData) {
         throw new Error('Badge not found');
       }
 
@@ -237,13 +256,13 @@ class RecognitionService {
         receiver: receiver.name,
         receiverId: receiver.id,
         receiverPhoto: receiver.photo,
-        campaign: formData.campaign || badgeInfo.badges.type,
+        campaign: formData.campaign || badgeData.type,
         likes: [],
         badges: {
-          id: badgeInfo.badges.id,
-          name: badgeInfo.badges.name,
-          type: badgeInfo.badges.type,
-          photo: badgeInfo.badges.photo
+          id: badgeData.id,
+          name: badgeData.name,
+          type: badgeData.type,
+          photo: badgeData.photo
         },
         message: formData.message,
         datetime: new Date().toISOString().replace('T', ' ').split('.')[0]

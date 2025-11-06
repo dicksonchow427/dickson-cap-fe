@@ -1,20 +1,5 @@
 [
   {
-    "name": "Dragon Boat",
-    "id": "1",
-    "host": "Company",
-    "message": "Honor those who consistently go above and beyond, setting high standards and delivering outstanding results. Excellence is about striving for continuous improvement and inspiring others.",
-    "datetime": "2025-10-31 00:00:00",
-    "cover": "excellence.jpg",
-    "status": "Inactive",
-    "badges": {
-      "id": "badges_000003",
-      "name": "Excellence",
-      "type": "Values",
-      "photo": "excellence_badges.png"
-    }
-  },
-  {
     "name": "Annual Dinner",
     "id": "2",
     "host": "Company",
@@ -23,10 +8,10 @@
     "cover": "collaboration.jpg",
     "status": "Inactive",
     "badges": {
-      "id": "badges_000004",
-      "name": "Collaboration",
-      "type": "Values",
-      "photo": "collaboration_badges.png"
+      "id": "badges_annual_dinner",
+      "name": "Annual Dinner",
+      "type": "Campaign",
+      "photo": "annual_dinner_badges.png"
     }
   },
   {
