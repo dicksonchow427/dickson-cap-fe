@@ -47,18 +47,18 @@ class UserService {
           title: `${totalReceived} Recognitions`,
           recognitions: totalReceived,
           avatar: `/images/${user.photo}`,
-          department_division: user.department_division
+          division: user.division
         };
       });
   }
 
   // Get users by division
-  async getUsersByDepartment(department: string): Promise<User[]> {
+  async getUsersByDivision(division: string): Promise<User[]> {
     const users = await this.loadUsers();
-    if (department === 'Everyone') {
+    if (division === 'Everyone') {
       return users;
     }
-    return users.filter(user => user.department_division === department);
+    return users.filter(user => user.division === division);
   }
 
 

@@ -64,7 +64,7 @@ const Dashboard = () => {
     currentUserId,
     pageSize: 10,
     autoLoad: true,
-    departmentFilter: filterBy,
+    divisionFilter: filterBy,
     activeTab
   });
 
@@ -285,14 +285,14 @@ const Dashboard = () => {
     );
   }
 
-  const Helmetany = Helmet as any;
+  const HelmetAny = Helmet as any; // Temporary workaround for Helmet type issues
 
   return (
     <>
-      <Helmetany>
+      <HelmetAny>
         <title>Colleague Appreciation Platform</title>
         <meta name="description" content="Employee recognition platform with real-time appreciation feeds and team analytics" />
-      </Helmetany>
+      </HelmetAny>
 
       <main id="dashboard-main" className="min-h-screen bg-gray-50" data-testid="dashboard-page">
         {/* Hero Section */}
@@ -306,7 +306,7 @@ const Dashboard = () => {
             <aside id="dashboard-left-sidebar" className="lg:col-span-3 space-y-6" data-testid="dashboard-sidebar-left">
               <UserProfile
                 name={currentUser?.name || 'Loading...'}
-                title={currentUser?.department_division || 'Loading...'}
+                title={currentUser?.division || 'Loading...'}
                 avatar={currentUser ? `/images/${currentUser.photo}` : '/images/img_image.png'}
                 onRecognizeClick={handleRecognizeFromProfile}
               />
@@ -332,7 +332,7 @@ const Dashboard = () => {
               <FilterSection
                 filterBy={filterBy}
                 onFilterChange={handleFilterChange}
-                userDepartment={currentUser?.department_division}
+                userDivision={currentUser?.division}
               />
 
               {/* Feed Content */}

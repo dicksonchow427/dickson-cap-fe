@@ -2,7 +2,7 @@ class PersistenceService {
   private dataDir: string;
   // Storage version for cache versioning
   // Increment this when you need to invalidate old cached data
-  private readonly STORAGE_VERSION = 'v1';
+  private readonly STORAGE_VERSION = 'v2';
 
   constructor() {
     // In a browser environment, we can't directly write to files

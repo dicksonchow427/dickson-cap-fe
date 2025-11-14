@@ -91,7 +91,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
     }
     return availableUsers.filter(user =>
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.department_division.toLowerCase().includes(searchTerm.toLowerCase())
+      user.division.toLowerCase().includes(searchTerm.toLowerCase())
     ).slice(0, 10); // Increased limit for search results too
   }, [availableUsers, searchTerm]);
 
@@ -303,7 +303,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
                         />
                         <div>
                           <div className="font-medium text-base text-gray-900">{user.name}</div>
-                          <div className="text-base text-gray-500">{user.department_division}</div>
+                          <div className="text-base text-gray-500">{user.division}</div>
                         </div>
                       </div>
                     </button>
@@ -319,12 +319,12 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
                   {/* Show indicator if search results are limited */}
                   {searchTerm && availableUsers.filter(user =>
                     user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    user.department_division.toLowerCase().includes(searchTerm.toLowerCase())
+                    user.division.toLowerCase().includes(searchTerm.toLowerCase())
                   ).length > 10 && (
                       <div className="px-4 py-2 text-base text-gray-500 bg-gray-50 border-t border-gray-100">
                         Showing 10 of {availableUsers.filter(user =>
                           user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          user.department_division.toLowerCase().includes(searchTerm.toLowerCase())
+                          user.division.toLowerCase().includes(searchTerm.toLowerCase())
                         ).length} results. Refine your search for more specific results.
                       </div>
                     )}
@@ -341,7 +341,7 @@ const RecognitionModal: React.FC<RecognitionModalProps> = ({
                   />
                   <div>
                     <div className="font-medium text-base text-gray-900">{state.selectedUser.name}</div>
-                    <div className="text-base text-gray-500">{state.selectedUser.department_division}</div>
+                    <div className="text-base text-gray-500">{state.selectedUser.division}</div>
                   </div>
                 </div>
               )}

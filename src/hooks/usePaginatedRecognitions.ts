@@ -6,7 +6,7 @@ interface UsePaginatedRecognitionsOptions {
   currentUserId?: string;
   pageSize?: number;
   autoLoad?: boolean;
-  departmentFilter?: string;
+  divisionFilter?: string;
   personFilter?: string;
   activeTab?: TabType;
 }
@@ -29,7 +29,7 @@ interface UsePaginatedRecognitionsReturn {
   // eslint-disable-next-line no-unused-vars
   getRecognitionsByTab: (tabType: TabType) => Promise<Recognition[]>;
   // eslint-disable-next-line no-unused-vars
-  filterRecognitionsByDepartment: (dept: string) => Promise<Recognition[]>;
+  filterRecognitionsByDivision: (division: string) => Promise<Recognition[]>;
   getTrendData: () => Promise<{ month: string; received: number; given: number; }[]>;
   getDistributionData: () => Promise<{ name: string; value: number; color: string; }[]>;
   getAvailableBadges: () => Promise<{ id: string; name: string; type: 'Values' | 'Campaign' }[]>;
@@ -38,7 +38,7 @@ interface UsePaginatedRecognitionsReturn {
 export const usePaginatedRecognitions = (
   options: UsePaginatedRecognitionsOptions = {}
 ): UsePaginatedRecognitionsReturn => {
-  const { currentUserId, pageSize = 10, autoLoad = true, departmentFilter = 'Everyone', personFilter, activeTab } = options;
+  const { currentUserId, pageSize = 10, autoLoad = true, divisionFilter = 'Everyone', personFilter, activeTab } = options;
 
   const [recognitions, setRecognitions] = useState<Recognition[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -58,7 +58,7 @@ export const usePaginatedRecognitions = (
         page,
         pageSize,
         tab,
-        departmentFilter,
+        divisionFilter,
         personFilter
       );
 
@@ -73,7 +73,7 @@ export const usePaginatedRecognitions = (
     } finally {
       setLoading(false);
     }
-  }, [currentUserId, pageSize, departmentFilter, personFilter]);
+  }, [currentUserId, pageSize, divisionFilter, personFilter]);
 
   const goToPage = useCallback((page: number) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
@@ -135,8 +135,8 @@ export const usePaginatedRecognitions = (
     }
   }, [currentUserId]);
 
-  const filterRecognitionsByDepartment = useCallback(async (department: string): Promise<Recognition[]> => {
-    if (department === 'Everyone') {
+  const filterRecognitionsByDivision = useCallback(async (division: string): Promise<Recognition[]> => {
+    if (division === 'Everyone') {
       return recognitions;
     }
 
@@ -147,8 +147,8 @@ export const usePaginatedRecognitions = (
 
       // Create a map of user ID to division
       const userDivisionMap = new Map();
-      users.forEach((user: { id: string; department_division: string }) => {
-        userDivisionMap.set(user.id, user.department_division);
+      users.forEach((user: { id: string; division: string }) => {
+        userDivisionMap.set(user.id, user.division);
       });
 
       // Filter recognitions by division
@@ -157,7 +157,7 @@ export const usePaginatedRecognitions = (
         const receiverDivision = userDivisionMap.get(recognition.receiverId);
 
         // Include recognition if either giver or receiver is in the selected division
-        return giverDivision === department || receiverDivision === department;
+        return giverDivision === division || receiverDivision === division;
       });
     } catch (error) {
       console.error('Error filtering recognitions by division:', error);
@@ -209,7 +209,7 @@ export const usePaginatedRecognitions = (
     if (!autoLoad) return;
     const tabToUse = activeTab ?? currentTab;
     loadRecognitions(1, tabToUse);
-  }, [autoLoad, loadRecognitions, departmentFilter, personFilter, currentTab, activeTab]);
+  }, [autoLoad, loadRecognitions, divisionFilter, personFilter, currentTab, activeTab]);
 
   return {
     recognitions,
@@ -225,7 +225,7 @@ export const usePaginatedRecognitions = (
     reloadWithFilters,
     createRecognition,
     getRecognitionsByTab,
-    filterRecognitionsByDepartment,
+    filterRecognitionsByDivision,
     getTrendData,
     getDistributionData,
     getAvailableBadges

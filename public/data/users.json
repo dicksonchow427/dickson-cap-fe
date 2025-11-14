@@ -3,7 +3,7 @@
         "name": "Peter Chan",
         "id": "20101",
         "photo": "peterchan.png",
-        "department_division": "Department C",
+        "division": "Division C",
         "lastLogin": "2024-01-15 09:30:00",
         "given_badges": [
             {
@@ -86,7 +86,7 @@
         "name": "Alice Leung",
         "id": "20102",
         "photo": "aliceleung.png",
-        "department_division": "Department A",
+        "division": "Division A",
         "lastLogin": "2024-01-14 14:22:00",
         "given_badges": [
             {
@@ -175,7 +175,7 @@
         "name": "Brian Ng",
         "id": "20103",
         "photo": "brianng.png",
-        "department_division": "Department B",
+        "division": "Division B",
         "lastLogin": "2024-01-15 08:15:00",
         "given_badges": [
             {
@@ -258,7 +258,7 @@
         "name": "Carmen Yip",
         "id": "20104",
         "photo": "carmenyip.png",
-        "department_division": "Department D",
+        "division": "Division D",
         "given_badges": [
             {
                 "id": "badges_000001",
@@ -340,7 +340,7 @@
         "name": "Daniel Ho",
         "id": "20105",
         "photo": "danielho.png",
-        "department_division": "Department C",
+        "division": "Division C",
         "given_badges": [
             {
                 "id": "badges_000001",
@@ -422,7 +422,7 @@
         "name": "Emily Wong",
         "id": "20106",
         "photo": "emilywong.png",
-        "department_division": "Department A",
+        "division": "Division A",
         "given_badges": [
             {
                 "id": "badges_000001",
@@ -504,7 +504,7 @@
         "name": "Frank Liu",
         "id": "20107",
         "photo": "frankliu.png",
-        "department_division": "Department B",
+        "division": "Division B",
         "given_badges": [
             {
                 "id": "badges_000001",
@@ -586,7 +586,7 @@
         "name": "Grace Chen",
         "id": "20108",
         "photo": "gracechen.png",
-        "department_division": "Department C",
+        "division": "Division C",
         "given_badges": [
             {
                 "id": "badges_000001",
@@ -668,7 +668,7 @@
         "name": "Henry Zhang",
         "id": "20109",
         "photo": "henryzhang.png",
-        "department_division": "Department D",
+        "division": "Division D",
         "given_badges": [
             {
                 "id": "badges_000001",
@@ -756,7 +756,7 @@
         "name": "Iris Tam",
         "id": "20110",
         "photo": "iristam.png",
-        "department_division": "Department A",
+        "division": "Division A",
         "given_badges": [
             {
                 "id": "badges_000001",

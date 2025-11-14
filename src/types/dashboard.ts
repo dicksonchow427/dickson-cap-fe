@@ -68,7 +68,7 @@ export interface Colleague {
   title: string;
   recognitions: number;
   avatar: string;
-  department_division: string;
+  division: string;
 }
 
 export interface Badge {
@@ -83,7 +83,7 @@ export interface User {
   name: string;
   id: string;
   photo: string;
-  department_division: string;
+  division: string;
   given_badges: Badge[];
   received_badges: Badge[];
   lastLogin?: string;
@@ -91,7 +91,7 @@ export interface User {
 
 
 export type TabType = 'feed' | 'campaign';
-export type FilterType = 'Everyone' | 'Your Own' | 'Department A' | 'Department B' | 'Department C' | 'Department D';
+export type FilterType = 'Everyone' | 'Your Own' | 'Division A' | 'Division B' | 'Division C' | 'Division D';
 
 // Campaign interfaces
 export interface Campaign {

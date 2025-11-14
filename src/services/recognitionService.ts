@@ -30,14 +30,36 @@ class RecognitionService {
 
 
 
+  // Format date to local time string (YYYY-MM-DD HH:mm:ss)
+  private formatLocalDateTime(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
+
+  // Parse datetime string (YYYY-MM-DD HH:mm:ss) to Date object
+  private parseDateTime(datetime: string): Date {
+    // Replace space with 'T' to make it ISO-like, then parse
+    // This ensures consistent parsing across browsers
+    const isoString = datetime.replace(' ', 'T');
+    return new Date(isoString);
+  }
+
   // Transform datetime to "time ago" format
   private getTimeAgo(datetime: string): string {
     const now = new Date();
-    const past = new Date(datetime);
+    const past = this.parseDateTime(datetime);
     const diffInHours = Math.floor((now.getTime() - past.getTime()) / (1000 * 60 * 60));
 
     if (diffInHours < 1) {
       const diffInMinutes = Math.floor((now.getTime() - past.getTime()) / (1000 * 60));
+      if (diffInMinutes === 0) {
+        return 'a moment ago';
+      }
       return `${diffInMinutes} minutes ago`;
     } else if (diffInHours < 24) {
       return `${diffInHours} hours ago`;
@@ -75,7 +97,7 @@ class RecognitionService {
     const recognitions = await this.getAllRecognitions();
     // Sort by datetime, most recent first
     const sortedRecognitions = recognitions.sort((a, b) =>
-      new Date(b.datetime).getTime() - new Date(a.datetime).getTime()
+      this.parseDateTime(b.datetime).getTime() - this.parseDateTime(a.datetime).getTime()
     );
 
     return sortedRecognitions.map((rec, index) =>
@@ -106,14 +128,14 @@ class RecognitionService {
     page: number = 1,
     pageSize: number = 10,
     tab: 'feed' | 'campaign' = 'feed',
-    departmentFilter: string = 'Everyone',
+    divisionFilter: string = 'Everyone',
     personFilter?: string
   ): Promise<{ recognitions: Recognition[]; totalCount: number; totalPages: number }> {
     let allRecognitions = await this.getRecognitionsByTab(tab, currentUserId);
 
-    // Apply department filtering
-    if (departmentFilter !== 'Everyone') {
-      if (departmentFilter === 'Your Own') {
+    // Apply division filtering
+    if (divisionFilter !== 'Everyone') {
+      if (divisionFilter === 'Your Own') {
         // Filter to show only recognitions where current user is giver or receiver
         allRecognitions = allRecognitions.filter(recognition =>
           recognition.giverId === currentUserId || recognition.receiverId === currentUserId
@@ -126,8 +148,8 @@ class RecognitionService {
 
           // Create a map of user ID to division
           const userDivisionMap = new Map();
-          users.forEach((user: { id: string; department_division: string }) => {
-            userDivisionMap.set(user.id, user.department_division);
+          users.forEach((user: { id: string; division: string }) => {
+            userDivisionMap.set(user.id, user.division);
           });
 
           // Filter recognitions by division
@@ -136,7 +158,7 @@ class RecognitionService {
             const receiverDivision = userDivisionMap.get(recognition.receiverId);
 
             // Include recognition if either giver or receiver is in the selected division
-            return giverDivision === departmentFilter || receiverDivision === departmentFilter;
+            return giverDivision === divisionFilter || receiverDivision === divisionFilter;
           });
         } catch (error) {
           console.error('Error filtering recognitions by division:', error);
@@ -221,11 +243,30 @@ class RecognitionService {
         throw new Error('User not found');
       }
 
-      // Find badge data from campaigns
+      // Find badge data from campaigns or static badge list
       const campaigns = await campaignService.getAllCampaigns();
-      const badgeInfo = campaigns.find(c => c.badges.id === formData.badgeId);
+      let badgeData: { id: string; name: string; type: 'Values' | 'Campaign'; photo: string } | null = null;
 
-      if (!badgeInfo) {
+      const campaignBadge = campaigns.find(c => c.badges.id === formData.badgeId);
+      if (campaignBadge) {
+        badgeData = campaignBadge.badges;
+      } else {
+        // If not found in campaigns, check static badge list
+        const staticBadges = [
+          { id: 'badges_000001', name: 'Integrity', type: 'Values' as const, photo: 'integrity_badges.png' },
+          { id: 'badges_000002', name: 'Diversity', type: 'Values' as const, photo: 'diversity_badges.png' },
+          { id: 'badges_000003', name: 'Excellence', type: 'Values' as const, photo: 'excellence_badges.png' },
+          { id: 'badges_000004', name: 'Collaboration', type: 'Values' as const, photo: 'collaboration_badges.png' },
+          { id: 'badges_000005', name: 'Engagement', type: 'Values' as const, photo: 'engagement_badges.png' },
+          { id: 'badges_202502', name: 'Wellness', type: 'Campaign' as const, photo: 'wellness_badges.png' }
+        ];
+        const staticBadge = staticBadges.find(b => b.id === formData.badgeId);
+        if (staticBadge) {
+          badgeData = staticBadge;
+        }
+      }
+
+      if (!badgeData) {
         throw new Error('Badge not found');
       }
 
@@ -237,16 +278,16 @@ class RecognitionService {
         receiver: receiver.name,
         receiverId: receiver.id,
         receiverPhoto: receiver.photo,
-        campaign: formData.campaign || badgeInfo.badges.type,
+        campaign: formData.campaign || badgeData.type,
         likes: [],
         badges: {
-          id: badgeInfo.badges.id,
-          name: badgeInfo.badges.name,
-          type: badgeInfo.badges.type,
-          photo: badgeInfo.badges.photo
+          id: badgeData.id,
+          name: badgeData.name,
+          type: badgeData.type,
+          photo: badgeData.photo
         },
         message: formData.message,
-        datetime: new Date().toISOString().replace('T', ' ').split('.')[0]
+        datetime: this.formatLocalDateTime(new Date())
       };
 
       // Add to local data and persist

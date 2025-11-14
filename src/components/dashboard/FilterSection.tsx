@@ -5,20 +5,20 @@ interface FilterSectionProps {
   filterBy: FilterType;
   // eslint-disable-next-line no-unused-vars
   onFilterChange?: (filterType: FilterType) => void;
-  userDepartment?: string;
+  userDivision?: string;
 }
 
 const FilterSection: React.FC<FilterSectionProps> = ({
   filterBy,
   onFilterChange,
-  userDepartment
+  userDivision
 }) => {
-  // Build filter options: always include Everyone and Your Own, plus user's department if available
+  // Build filter options: always include Everyone and Your Own, plus user's division if available
   const filterOptions: FilterType[] = [
     'Everyone',
     'Your Own',
-    ...(userDepartment && ['Department A', 'Department B', 'Department C', 'Department D'].includes(userDepartment) 
-      ? [userDepartment as FilterType] 
+    ...(userDivision && ['Division A', 'Division B', 'Division C', 'Division D'].includes(userDivision)
+      ? [userDivision as FilterType]
       : [])
   ];
 

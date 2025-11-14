@@ -47,7 +47,7 @@ const ColleaguesList: React.FC<ColleaguesListProps> = ({
                     className="text-sm text-gray-500"
                     data-testid={`colleague-division-wrapper-${colleague.id}`}
                   >
-                    <span id={`colleague-division-${colleague.id}`} data-testid={`colleague-division-text-${colleague.id}`}>{colleague.department_division}</span>
+                    <span id={`colleague-division-${colleague.id}`} data-testid={`colleague-division-text-${colleague.id}`}>{colleague.division}</span>
                   </p>
                 </div>
               </div>
