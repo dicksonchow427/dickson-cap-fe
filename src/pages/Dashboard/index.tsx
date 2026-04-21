@@ -9,6 +9,7 @@ import { useRecognitionActions } from '../../hooks/useRecognitionActions';
 import { useCampaigns } from '../../hooks/useCampaigns';
 import { CHART_COLORS, getBadgeColor } from '../../constants/badgeColors';
 import HeroSection from '../../components/dashboard/HeroSection';
+import AdminDashboard from '../../components/admin/AdminDashboard';
 
 // Import components
 import UserProfile from '../../components/dashboard/UserProfile';
@@ -27,6 +28,7 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<TabType>('feed');
   const [filterBy, setFilterBy] = useState<FilterType>('Everyone');
   const [currentUserId] = useState('20101'); // Peter Chan as current user
+  const [isAdminMode, setIsAdminMode] = useState(false);
 
   // Recognition modal state
   const [isRecognitionModalOpen, setIsRecognitionModalOpen] = useState(false);
@@ -198,6 +200,12 @@ const Dashboard = () => {
     setIsRecognitionModalOpen(true);
   };
 
+  const handleAdminToggle = (isAdmin: boolean) => {
+    setIsAdminMode(isAdmin);
+    console.log(`Admin mode ${isAdmin ? 'enabled' : 'disabled'}`);
+    // TODO: Implement admin mode logic here
+  };
+
   const handleCloseRecognitionModal = () => {
     setIsRecognitionModalOpen(false);
     setPreselectedUserId(undefined); // Clear preselected user when closing modal
@@ -255,6 +263,11 @@ const Dashboard = () => {
   // Combined error state
   const error = usersError || recognitionsError || campaignsError;
 
+  // Render admin dashboard if admin mode is enabled
+  if (isAdminMode) {
+    return <AdminDashboard onExitAdminMode={() => setIsAdminMode(false)} />;
+  }
+
   // Loading state
   if (loading) {
     return (
@@ -285,7 +298,7 @@ const Dashboard = () => {
     );
   }
 
-  const HelmetAny = Helmet as any; // Temporary workaround for Helmet type issues
+  let HelmetAny = Helmet as any; // Type assertion to bypass TypeScript issues with HelmetAny
 
   return (
     <>
@@ -296,7 +309,7 @@ const Dashboard = () => {
 
       <main id="dashboard-main" className="min-h-screen bg-gray-50" data-testid="dashboard-page">
         {/* Hero Section */}
-        <HeroSection userName={currentUser?.name} />
+        <HeroSection userName={currentUser?.name} onAdminToggle={handleAdminToggle} />
 
         {/* Main Content */}
         <section id="dashboard-content" className="max-w-7xl mx-auto px-4 py-8" data-testid="dashboard-main-content">
